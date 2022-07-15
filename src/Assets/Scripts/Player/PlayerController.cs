@@ -11,6 +11,14 @@ public class PlayerController : MonoBehaviour
     bool canMove = true;
     float delay = .5f;
 
+    public int[] verticalDiceReel = { 1, 5, 6 };
+    public int[] horizontalDiceReel = { 2, 3, 5, 6 };
+
+    public int verticalFaceIndex = 1;
+    public int horizontalFaceIndex = 2;
+    public int currentFace;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +45,7 @@ public class PlayerController : MonoBehaviour
                 }
                 if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), .2f, collisionLayer))
                 {
+                    MoveHorizontal((int)Mathf.Sign(Input.GetAxisRaw("Horizontal")));
                     movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
                 }
                 StartCoroutine(MoveDelay());
@@ -54,10 +63,12 @@ public class PlayerController : MonoBehaviour
 
                 if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f), .2f, collisionLayer))
                 {
+                    MoveVertically((int)Mathf.Sign(Input.GetAxisRaw("Vertical")));
                     movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
                 }
                 StartCoroutine(MoveDelay());
             }
+            currentFace = horizontalDiceReel[horizontalFaceIndex];
     }
     else{
             anim.SetBool("MoveRight",false);
@@ -68,7 +79,6 @@ public class PlayerController : MonoBehaviour
         
     }
 
-
     }
 
 
@@ -77,5 +87,67 @@ public class PlayerController : MonoBehaviour
         canMove = false;
         yield return new WaitForSeconds(delay);
         canMove = true;
+    }
+
+    void MoveVertically(int dir)
+    {
+        if (dir < 0)
+        {
+            if (verticalFaceIndex - 1 < 0)
+            {
+                verticalFaceIndex = verticalDiceReel.Length - 1;
+            }
+            else
+            {
+                verticalFaceIndex -= 1;
+            }
+
+        }
+        else
+        {
+            if (verticalFaceIndex + 1 > verticalDiceReel.Length - 1)
+            {
+                verticalFaceIndex = 0;
+            }
+            else
+            {
+                verticalFaceIndex += 1;
+            }
+        }
+        horizontalDiceReel[horizontalFaceIndex] = verticalDiceReel[verticalFaceIndex];
+    }
+
+
+
+
+
+    void MoveHorizontal(int dir)
+    {
+
+        if (dir > 0)
+        {
+            if (horizontalFaceIndex - 1 < 0)
+            {
+                horizontalFaceIndex = horizontalDiceReel.Length - 1;
+            }
+            else
+            {
+                horizontalFaceIndex -= 1;
+            }
+
+        }
+        else
+        {
+            if (horizontalFaceIndex + 1 > horizontalDiceReel.Length - 1)
+            {
+                horizontalFaceIndex = 0;
+            }
+            else
+            {
+                horizontalFaceIndex += 1;
+            }
+        }
+
+        verticalDiceReel[verticalFaceIndex] = horizontalDiceReel[horizontalFaceIndex];
     }
 }

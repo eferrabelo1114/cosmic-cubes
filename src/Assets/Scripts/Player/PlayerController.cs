@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     public GameObject left;
     public GameObject up;
     public GameObject down;
+    public GameObject sfx;
 
 
     
@@ -47,8 +48,10 @@ public class PlayerController : MonoBehaviour
         Debug.Log(canMove);
         if (Vector3.Distance(transform.position, movePoint.position) <= .05f&&canMove)
         {
+
             if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
             {
+                sfx.GetComponent<SoundEffects>().playOnce(sfx.GetComponent<SoundEffects>().soundEffects[0]);
                 anim.SetBool("isMoving",true);
 
                 if(Input.GetAxisRaw("Horizontal") == 1f){
@@ -68,6 +71,7 @@ public class PlayerController : MonoBehaviour
 
             else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
             {
+                sfx.GetComponent<SoundEffects>().playOnce(sfx.GetComponent<SoundEffects>().soundEffects[0]);
                 if(Input.GetAxisRaw("Vertical") == 1f){
                     anim.SetBool("MoveUp",true);
                 }

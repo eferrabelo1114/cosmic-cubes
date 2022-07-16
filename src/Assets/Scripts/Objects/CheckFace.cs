@@ -14,7 +14,7 @@ public class CheckFace : MonoBehaviour
     public bool goalMet = false;
     public GameObject closestInteractable;
     private float count = 0;
-
+    public bool playerOnly = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,9 +33,30 @@ public class CheckFace : MonoBehaviour
             Debug.Log(closestObj);
             if (closestObj && closestObj.GetComponent<PlayerController>())
             {
-                Debug.Log(closestObj.GetComponent<PlayerController>().getCurrentFace());
-                goalMet = goalFace == closestObj.GetComponent<PlayerController>().getCurrentFace() || goalFace == 0;
-                closestInteractable = closestObj;
+                if (!closestObj.GetComponent<PlayerController>().isMoving)
+                {
+                    goalMet = goalFace == closestObj.GetComponent<PlayerController>().getCurrentFace() || goalFace == 0;
+                    closestInteractable = closestObj;
+                }
+                else
+                {
+                    closestInteractable = closestObj;
+                    goalMet = false;
+                }
+
+            }
+            else if (!playerOnly && closestObj && closestObj.GetComponent<PushableBox>())
+            {
+                if (!closestObj.GetComponent<PushableBox>().isMoving)
+                {
+                    goalMet = goalFace == closestObj.GetComponent<PushableBox>().getCurrentFace() || goalFace == 0;
+                    closestInteractable = closestObj;
+                }
+                else
+                {
+                    closestInteractable = closestObj;
+                    goalMet = false;
+                }
             }
             else
             {

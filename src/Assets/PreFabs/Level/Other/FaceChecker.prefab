@@ -103,6 +103,8 @@ MonoBehaviour:
   interactableTag: Dice
   goalFace: 6
   goalMet: 0
+  closestInteractable: {fileID: 0}
+  playerOnly: 1
 --- !u!61 &-2321333528018310553
 BoxCollider2D:
   m_ObjectHideFlags: 0

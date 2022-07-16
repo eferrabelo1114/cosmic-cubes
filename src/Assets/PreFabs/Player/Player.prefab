@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4437669515069107972}
   m_Layer: 0
   m_Name: PlayerMovePoint
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 4437669515412784326}
   - component: {fileID: 5020917691817170201}
   - component: {fileID: -4928759996851678889}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Dice
   m_Icon: {fileID: 0}
@@ -260,10 +260,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   movePoint: {fileID: 4437669515069107972}
+  detector: {fileID: 0}
   collisionLayer:
     serializedVersion: 2
     m_Bits: 8
   anim: {fileID: 4437669515412784326}
+  isMoving: 0
   verticalDiceReel: 010000000500000006000000
   horizontalDiceReel: 02000000030000000500000004000000
   verticalFaceIndex: 1

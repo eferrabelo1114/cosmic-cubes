@@ -21,6 +21,11 @@ public class PlayerController : MonoBehaviour
     public int botFace;
     public int rightFace;
     public int leftFace;
+    public List<Sprite> indicators;
+    public GameObject right;
+    public GameObject left;
+    public GameObject up;
+    public GameObject down;
 
 
     // Start is called before the first frame update
@@ -77,7 +82,11 @@ public class PlayerController : MonoBehaviour
             topFace = (verticalFaceIndex - 1 < 0 ? verticalDiceReel[verticalDiceReel.Length - 1] : verticalDiceReel[verticalFaceIndex - 1]);
             botFace = (verticalFaceIndex + 1 > verticalDiceReel.Length - 1 ? verticalDiceReel[0] : verticalDiceReel[verticalFaceIndex + 1]);
             leftFace = (horizontalFaceIndex - 1 < 0 ? horizontalDiceReel[horizontalDiceReel.Length - 1] : horizontalDiceReel[horizontalFaceIndex - 1]);
-            rightFace = (horizontalFaceIndex + 1 > horizontalDiceReel.Length - 1 ? horizontalDiceReel[0] : horizontalDiceReel[horizontalFaceIndex + 1])
+            rightFace = (horizontalFaceIndex + 1 > horizontalDiceReel.Length - 1 ? horizontalDiceReel[0] : horizontalDiceReel[horizontalFaceIndex + 1]);
+            right.GetComponent<SpriteRenderer>().sprite = indicators[leftFace-1];
+            left.GetComponent<SpriteRenderer>().sprite = indicators[rightFace-1];
+            up.GetComponent<SpriteRenderer>().sprite = indicators[botFace-1];
+            down.GetComponent<SpriteRenderer>().sprite = indicators[topFace-1];
     }
     else{
             anim.SetBool("MoveRight",false);

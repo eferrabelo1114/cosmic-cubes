@@ -19,7 +19,7 @@ public class ButtonAnimator : MonoBehaviour, IPointerUpHandler, IPointerDownHand
 
     void ChangeButtonToDown() {
         buttonImage.sprite = buttonDown;
-        buttonText.localPosition = new Vector3(0, 1.03f, 0);
+        buttonText.localPosition = new Vector3(0, 1.33f, 0);
     }
 
     void ChangeButtonToUp() {

@@ -12,7 +12,7 @@ public class CheckFace : MonoBehaviour
 
     public int goalFace;
     public bool goalMet = false;
-
+    public GameObject closestInteractable;
     private float count = 0;
 
     // Start is called before the first frame update
@@ -35,6 +35,12 @@ public class CheckFace : MonoBehaviour
             {
                 Debug.Log(closestObj.GetComponent<PlayerController>().getCurrentFace());
                 goalMet = goalFace == closestObj.GetComponent<PlayerController>().getCurrentFace() || goalFace == 0;
+                closestInteractable = closestObj;
+            }
+            else
+            {
+                closestInteractable = closestObj;
+                goalMet = false;
             }
         }
 

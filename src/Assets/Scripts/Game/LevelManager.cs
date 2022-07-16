@@ -19,7 +19,6 @@ public class LevelManager : MonoBehaviour
         levelLoader = Instantiate(LevelLoader).GetComponent<LevelLoader>();
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         LevelSpawnpoint = GameObject.Find("PlayerSpawn");

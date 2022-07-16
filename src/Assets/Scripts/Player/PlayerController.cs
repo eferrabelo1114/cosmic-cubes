@@ -164,4 +164,9 @@ public class PlayerController : MonoBehaviour
 
         verticalDiceReel[verticalFaceIndex] = horizontalDiceReel[horizontalFaceIndex];
     }
+
+    public int getCurrentFace()
+    {
+        return this.currentFace;
+    }
 }

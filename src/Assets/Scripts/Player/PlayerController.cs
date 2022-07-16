@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private GameManager gameManager;
+
     public float moveSpeed = 5f;
     public Transform movePoint;
     public LayerMask collisionLayer;
@@ -28,9 +30,13 @@ public class PlayerController : MonoBehaviour
     public GameObject down;
 
 
+    
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        transform.position = gameManager.currentPlayerSpawnpoint;
+
         movePoint.parent = null;
     }
 
@@ -163,5 +169,10 @@ public class PlayerController : MonoBehaviour
         }
 
         verticalDiceReel[verticalFaceIndex] = horizontalDiceReel[horizontalFaceIndex];
+    }
+
+    public int getCurrentFace()
+    {
+        return this.currentFace;
     }
 }

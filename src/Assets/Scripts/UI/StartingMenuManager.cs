@@ -11,14 +11,16 @@ public class StartingMenuManager : MonoBehaviour
     public Transform LevelManager;
     public Button StartGameButton;
 
-    void Start() {
+    void Start()
+    {
         LevelManager = Instantiate(LevelManager);
         levelLoader = LevelManager.GetComponent<LevelLoader>();
 
         StartGameButton.onClick.AddListener(StartGame);
     }
 
-    void StartGame() {
+    void StartGame()
+    {
         levelLoader.LoadLevel("1-1");
     }
 

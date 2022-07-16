@@ -30,7 +30,6 @@ public class CheckFace : MonoBehaviour
         {
 
             closestObj = FindClosestObj(interactableTag);
-            Debug.Log(closestObj);
             if (closestObj && closestObj.GetComponent<PlayerController>())
             {
                 if (!closestObj.GetComponent<PlayerController>().isMoving)

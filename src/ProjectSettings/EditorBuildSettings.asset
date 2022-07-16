@@ -5,9 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Levels/1-1.unity
     guid: 3bae995c5f8bb0e43a59fef78eff3e1d
@@ -26,9 +23,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UI/LevelUI.unity
     guid: ba69590f7bf72e54cb09b3ff7f50761b
-  - enabled: 1
-    path: Assets/Scenes/Game/Music/Music.unity
-    guid: dcd8fc951331c1e4fa25acbfe143c9e6
   - enabled: 1
     path: Assets/Scenes/Levels/0-2.unity
     guid: 61f4c37a96d96c9478e2491425e55c3a

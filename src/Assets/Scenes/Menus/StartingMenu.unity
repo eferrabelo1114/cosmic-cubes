@@ -890,6 +890,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3581042075456851135, guid: 2eb26c05c5cc71243805f3c1583b272f, type: 3}
+      propertyPath: testSFXClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c7283e19912e4664bb0c37c62921529d, type: 3}
+    - target: {fileID: 3581042075456851135, guid: 2eb26c05c5cc71243805f3c1583b272f, type: 3}
       propertyPath: StartGameButton
       value: 
       objectReference: {fileID: 1486056687}

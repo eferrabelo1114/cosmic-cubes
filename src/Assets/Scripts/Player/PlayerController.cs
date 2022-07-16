@@ -43,7 +43,6 @@ public class PlayerController : MonoBehaviour
         {
             loadFaces(faceConfig.verticalDiceReel, faceConfig.horizontalDiceReel);
         }
-
     }
 
     // Update is called once per frame
@@ -53,10 +52,10 @@ public class PlayerController : MonoBehaviour
 
         if (Vector3.Distance(transform.position, movePoint.position) <= .05f && canMove)
         {
-
+            
             if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
             {
-                sfx.GetComponent<SoundEffects>().playOnce(sfx.GetComponent<SoundEffects>().soundEffects[0]);
+                AudioManager.instance.PlaySound("move");
                 anim.SetBool("isMoving", true);
                 // isMoving = true;
                 if (Input.GetAxisRaw("Horizontal") == 1f)
@@ -88,7 +87,7 @@ public class PlayerController : MonoBehaviour
 
             else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
             {
-                sfx.GetComponent<SoundEffects>().playOnce(sfx.GetComponent<SoundEffects>().soundEffects[0]);
+                AudioManager.instance.PlaySound("move");
                 if (Input.GetAxisRaw("Vertical") == 1f)
                 {
                     anim.SetBool("MoveUp", true);

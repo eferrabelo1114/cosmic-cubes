@@ -48,7 +48,7 @@ public class PushableBox : MonoBehaviour
 
             if (horizontal)
             {
-                sfx.GetComponent<SoundEffects>().playOnce(sfx.GetComponent<SoundEffects>().soundEffects[0]);
+                
                 anim.SetBool("isMoving", true);
                 // isMoving = true;
                 if (axis == 1f)
@@ -70,7 +70,7 @@ public class PushableBox : MonoBehaviour
 
             else if (!horizontal)
             {
-                sfx.GetComponent<SoundEffects>().playOnce(sfx.GetComponent<SoundEffects>().soundEffects[0]);
+                
                 if (axis == 1f)
                 {
                     anim.SetBool("MoveUp", true);

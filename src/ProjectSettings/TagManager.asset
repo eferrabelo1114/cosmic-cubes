@@ -9,6 +9,7 @@ TagManager:
   - EndOfLevel
   - GameManager
   - LevelManager
+  - AudioManager
   layers:
   - Default
   - TransparentFX

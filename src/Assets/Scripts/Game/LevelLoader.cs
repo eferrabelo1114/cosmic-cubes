@@ -9,8 +9,8 @@ public class LevelLoader : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    {   
+         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
     public void LoadLevel(string level) {

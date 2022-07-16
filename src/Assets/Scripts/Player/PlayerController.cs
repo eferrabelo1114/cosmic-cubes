@@ -14,6 +14,10 @@ public class PlayerController : MonoBehaviour
     public int verticalFaceIndex = 1;
     public int horizontalFaceIndex = 2;
     public int currentFace;
+    public int topFace;
+    public int botFace;
+    public int rightFace;
+    public int leftFace;
 
 
     // Start is called before the first frame update
@@ -47,6 +51,10 @@ public class PlayerController : MonoBehaviour
                 }
             }
             currentFace = horizontalDiceReel[horizontalFaceIndex];
+            topFace = (verticalFaceIndex - 1 < 0 ? verticalDiceReel[verticalDiceReel.Length - 1] : verticalDiceReel[verticalFaceIndex - 1]);
+            botFace = (verticalFaceIndex + 1 > verticalDiceReel.Length - 1 ? verticalDiceReel[0] : verticalDiceReel[verticalFaceIndex + 1]);
+            leftFace = (horizontalFaceIndex - 1 < 0 ? horizontalDiceReel[horizontalDiceReel.Length - 1] : horizontalDiceReel[horizontalFaceIndex - 1]);
+            rightFace = (horizontalFaceIndex + 1 > horizontalDiceReel.Length - 1 ? horizontalDiceReel[0] : horizontalDiceReel[horizontalFaceIndex + 1]);
         }
     }
 
@@ -77,10 +85,6 @@ public class PlayerController : MonoBehaviour
         }
         horizontalDiceReel[horizontalFaceIndex] = verticalDiceReel[verticalFaceIndex];
     }
-
-
-
-
 
     void MoveHorizontal(int dir)
     {

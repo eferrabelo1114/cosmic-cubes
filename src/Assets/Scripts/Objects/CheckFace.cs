@@ -7,7 +7,7 @@ public class CheckFace : MonoBehaviour
 
     // private float count = 0;
     public int refreshRate = 10;
-    public float interactionRadius = 1;
+    public float interactionRadius = .1f;
     public string interactableTag = "Dice";
 
     public int goalFace;
@@ -34,7 +34,7 @@ public class CheckFace : MonoBehaviour
             if (closestObj && closestObj.GetComponent<PlayerController>())
             {
                 Debug.Log(closestObj.GetComponent<PlayerController>().getCurrentFace());
-                goalMet = goalFace == closestObj.GetComponent<PlayerController>().getCurrentFace();
+                goalMet = goalFace == closestObj.GetComponent<PlayerController>().getCurrentFace() || goalFace == 0;
             }
         }
 

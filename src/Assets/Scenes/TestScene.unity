@@ -310,6 +310,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   anim: {fileID: 1459728686}
+  verticalDiceReel: 010000000500000006000000
+  horizontalDiceReel: 02000000030000000500000004000000
+  verticalFaceIndex: 1
+  horizontalFaceIndex: 2
+  currentFace: 0
 --- !u!4 &1459728684
 Transform:
   m_ObjectHideFlags: 0

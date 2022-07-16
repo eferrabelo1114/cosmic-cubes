@@ -69,6 +69,7 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(MoveDelay());
             }
             currentFace = horizontalDiceReel[horizontalFaceIndex];
+            anim.SetInteger("CurrentFace",currentFace);
     }
     else{
             anim.SetBool("MoveRight",false);

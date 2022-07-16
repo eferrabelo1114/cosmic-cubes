@@ -29,9 +29,8 @@ public class PlayerController : MonoBehaviour
     public GameObject up;
     public GameObject down;
     public GameObject sfx;
+    public StartingFaceConfig faceConfig;
 
-
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +38,12 @@ public class PlayerController : MonoBehaviour
         transform.position = gameManager.currentPlayerSpawnpoint;
 
         movePoint.parent = null;
+
+        if (faceConfig != null)
+        {
+            loadFaces(faceConfig.verticalDiceReel, faceConfig.horizontalDiceReel);
+        }
+
     }
 
     // Update is called once per frame
@@ -46,20 +51,21 @@ public class PlayerController : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
         Debug.Log(canMove);
-        if (Vector3.Distance(transform.position, movePoint.position) <= .05f&&canMove)
+        if (Vector3.Distance(transform.position, movePoint.position) <= .05f && canMove)
         {
 
             if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
             {
                 sfx.GetComponent<SoundEffects>().playOnce(sfx.GetComponent<SoundEffects>().soundEffects[0]);
-                anim.SetBool("isMoving",true);
+                anim.SetBool("isMoving", true);
 
-                if(Input.GetAxisRaw("Horizontal") == 1f){
-                    anim.SetBool("MoveRight",true);
+                if (Input.GetAxisRaw("Horizontal") == 1f)
+                {
+                    anim.SetBool("MoveRight", true);
                 }
                 else
                 {
-                    anim.SetBool("MoveLeft",true);
+                    anim.SetBool("MoveLeft", true);
                 }
                 if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), .2f, collisionLayer))
                 {
@@ -72,12 +78,13 @@ public class PlayerController : MonoBehaviour
             else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
             {
                 sfx.GetComponent<SoundEffects>().playOnce(sfx.GetComponent<SoundEffects>().soundEffects[0]);
-                if(Input.GetAxisRaw("Vertical") == 1f){
-                    anim.SetBool("MoveUp",true);
+                if (Input.GetAxisRaw("Vertical") == 1f)
+                {
+                    anim.SetBool("MoveUp", true);
                 }
                 else
                 {
-                    anim.SetBool("MoveDown",true);
+                    anim.SetBool("MoveDown", true);
                 }
 
                 if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f), .2f, collisionLayer))
@@ -88,29 +95,31 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(MoveDelay());
             }
             currentFace = horizontalDiceReel[horizontalFaceIndex];
-            anim.SetInteger("CurrentFace",currentFace);
+            anim.SetInteger("CurrentFace", currentFace);
             topFace = (verticalFaceIndex - 1 < 0 ? verticalDiceReel[verticalDiceReel.Length - 1] : verticalDiceReel[verticalFaceIndex - 1]);
             botFace = (verticalFaceIndex + 1 > verticalDiceReel.Length - 1 ? verticalDiceReel[0] : verticalDiceReel[verticalFaceIndex + 1]);
             leftFace = (horizontalFaceIndex - 1 < 0 ? horizontalDiceReel[horizontalDiceReel.Length - 1] : horizontalDiceReel[horizontalFaceIndex - 1]);
             rightFace = (horizontalFaceIndex + 1 > horizontalDiceReel.Length - 1 ? horizontalDiceReel[0] : horizontalDiceReel[horizontalFaceIndex + 1]);
-            right.GetComponent<SpriteRenderer>().sprite = indicators[leftFace-1];
-            left.GetComponent<SpriteRenderer>().sprite = indicators[rightFace-1];
-            up.GetComponent<SpriteRenderer>().sprite = indicators[botFace-1];
-            down.GetComponent<SpriteRenderer>().sprite = indicators[topFace-1];
-    }
-    else{
-            anim.SetBool("MoveRight",false);
-            anim.SetBool("MoveLeft",false);
-            anim.SetBool("MoveUp",false);
-            anim.SetBool("MoveDown",false);
-            anim.SetBool("isMoving",false);
-        
-    }
+            right.GetComponent<SpriteRenderer>().sprite = indicators[leftFace - 1];
+            left.GetComponent<SpriteRenderer>().sprite = indicators[rightFace - 1];
+            up.GetComponent<SpriteRenderer>().sprite = indicators[botFace - 1];
+            down.GetComponent<SpriteRenderer>().sprite = indicators[topFace - 1];
+        }
+        else
+        {
+            anim.SetBool("MoveRight", false);
+            anim.SetBool("MoveLeft", false);
+            anim.SetBool("MoveUp", false);
+            anim.SetBool("MoveDown", false);
+            anim.SetBool("isMoving", false);
+
+        }
 
     }
 
 
-    private IEnumerator MoveDelay(){
+    private IEnumerator MoveDelay()
+    {
         Debug.Log("go");
         canMove = false;
         yield return new WaitForSeconds(delay);
@@ -178,5 +187,11 @@ public class PlayerController : MonoBehaviour
     public int getCurrentFace()
     {
         return this.currentFace;
+    }
+
+    public void loadFaces(int[] vertical, int[] horizontal)
+    {
+        this.verticalDiceReel = vertical;
+        this.horizontalDiceReel = horizontal;
     }
 }

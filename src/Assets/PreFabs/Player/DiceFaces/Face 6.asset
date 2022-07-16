@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51aad4cf29f2ff40aec575d8efaeaff, type: 3}
+  m_Name: Face 6
+  m_EditorClassIdentifier: 
+  verticalDiceReel: 050000000600000001000000
+  horizontalDiceReel: 02000000030000000600000004000000

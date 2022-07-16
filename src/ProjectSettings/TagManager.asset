@@ -8,6 +8,7 @@ TagManager:
   - PlayerSpawn
   - EndOfLevel
   - GameManager
+  - LevelManager
   layers:
   - Default
   - TransparentFX

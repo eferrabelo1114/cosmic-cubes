@@ -117,7 +117,6 @@ public class PlayerController : MonoBehaviour
 
     }
 
-
     private IEnumerator MoveDelay()
     {
         Debug.Log("go");

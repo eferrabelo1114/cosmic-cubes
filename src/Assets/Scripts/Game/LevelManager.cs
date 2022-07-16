@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
     public StartingFaceConfig startingFace;
     private bool leveCompleted = false;
 
+    public string level = "0-0";
     public string NextLevel = "1-2";
 
     public Transform LevelLoader;
@@ -37,6 +38,13 @@ public class LevelManager : MonoBehaviour
         // Gets the level loader for the scene
         levelLoader = Instantiate(LevelLoader).GetComponent<LevelLoader>();
 
+        // This is here for testing levels without using start menu
+        // TODO: Move this to gamemanager instead of level manager
+        string currentLevel = gameManager.currentLevel;
+        if (currentLevel == null || currentLevel == "") {
+            gameManager.currentLevel = level;
+        }
+
         // Obtains the spawn point for the level
         GameObject LevelSpawnpoint = GameObject.FindGameObjectWithTag("PlayerSpawn");
         if (LevelSpawnpoint == null)
@@ -53,6 +61,12 @@ public class LevelManager : MonoBehaviour
             return;
         }
 
+        // Make sure StartingFaces is set
+        if (startingFace == null) {
+            Debug.LogWarning("Level has no starting face!");
+            return;
+        }
+
         // Obtains the components
         endFaceChecker = EndOfLevelObject.GetComponent<CheckFace>();
 
@@ -60,17 +74,32 @@ public class LevelManager : MonoBehaviour
         gameManager.currentPlayerSpawnpoint = LevelSpawnpoint.transform.position;
         Destroy(LevelSpawnpoint);
 
+        // Load the Level's UI
+        SceneHelper.LoadScene("LevelUI", true);
+
         // Finally spawn the player in
         SceneHelper.LoadScene("Player", true);
 
         CallAfterDelay.Create(0, () =>
         {
-            GameObject.Find("Player").GetComponent<PlayerController>().loadFaces(startingFace.verticalDiceReel, startingFace.horizontalDiceReel);
+            GameObject.FindGameObjectWithTag("Dice").GetComponent<PlayerController>().loadFaces(startingFace.verticalDiceReel, startingFace.horizontalDiceReel);
         });
     }
 
     void Update()
     {
+        // Check for a pause game
+        if (Input.GetKeyDown("escape") && gameManager != null)
+        {
+            gameManager.PauseGame(true);
+        }
+
+        // Restart Level
+        if (Input.GetKeyDown("r") && gameManager != null)
+        {
+            gameManager.RestartLevel();
+        }
+
         // If the level has not been complete dont do anything
         if (!endFaceChecker.goalMet) { return; }
 

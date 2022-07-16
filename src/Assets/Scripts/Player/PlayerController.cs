@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private GameManager gameManager;
+
     public float moveSpeed = 5f;
     public Transform movePoint;
     public LayerMask collisionLayer;
 
+    
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        transform.position = gameManager.currentPlayerSpawnpoint;
+
         movePoint.parent = null;
     }
 

@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public Vector3 currentPlayerSpawnpoint;
+
     // Start is called before the first frame update
     void Start()
     {

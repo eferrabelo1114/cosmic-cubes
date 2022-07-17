@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
     public int verticalFaceIndex = 1;
     public int horizontalFaceIndex = 2;
+    public int horizontalBackIndex = 0;
     public int currentFace;
     public int topFace;
     public int botFace;
@@ -78,11 +79,9 @@ public class PlayerController : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
 
-        // Slide(new Vector3(1f, 0f, 0f));
-
         if (Vector3.Distance(transform.position, movePoint.position) <= .05f && canMove)
         {
-            
+
             if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
             {
                 AudioManager.instance.PlaySound("move");
@@ -182,27 +181,30 @@ public class PlayerController : MonoBehaviour
     {
         if (dir < 0)
         {
-            if (verticalFaceIndex - 1 < 0)
+            int temp = verticalDiceReel[verticalDiceReel.Length - 1];
+
+            for (int i = verticalDiceReel.Length - 1; i > 0; i--)
             {
-                verticalFaceIndex = verticalDiceReel.Length - 1;
-            }
-            else
-            {
-                verticalFaceIndex -= 1;
+                verticalDiceReel[i] = verticalDiceReel[i - 1];
             }
 
+            verticalDiceReel[0] = horizontalDiceReel[0];
+            horizontalDiceReel[0] = temp;
         }
         else
         {
-            if (verticalFaceIndex + 1 > verticalDiceReel.Length - 1)
+            int temp = verticalDiceReel[0];
+
+            for (int i = 0; i < verticalDiceReel.Length - 1; i++)
             {
-                verticalFaceIndex = 0;
+                verticalDiceReel[i] = verticalDiceReel[i + 1];
             }
-            else
-            {
-                verticalFaceIndex += 1;
-            }
+
+            verticalDiceReel[verticalDiceReel.Length - 1] = horizontalDiceReel[0];
+            horizontalDiceReel[0] = temp;
         }
+
+
         horizontalDiceReel[horizontalFaceIndex] = verticalDiceReel[verticalFaceIndex];
     }
 
@@ -211,30 +213,88 @@ public class PlayerController : MonoBehaviour
 
         if (dir > 0)
         {
-            if (horizontalFaceIndex - 1 < 0)
+            int temp = horizontalDiceReel[horizontalDiceReel.Length - 1];
+
+            for (int i = horizontalDiceReel.Length - 1; i > 0; i--)
             {
-                horizontalFaceIndex = horizontalDiceReel.Length - 1;
-            }
-            else
-            {
-                horizontalFaceIndex -= 1;
+                horizontalDiceReel[i] = horizontalDiceReel[i - 1];
             }
 
+            horizontalDiceReel[0] = temp;
         }
         else
         {
-            if (horizontalFaceIndex + 1 > horizontalDiceReel.Length - 1)
+            int temp = horizontalDiceReel[0];
+
+            for (int i = 0; i < horizontalDiceReel.Length - 1; i++)
             {
-                horizontalFaceIndex = 0;
+                horizontalDiceReel[i] = horizontalDiceReel[i + 1];
             }
-            else
-            {
-                horizontalFaceIndex += 1;
-            }
+
+            horizontalDiceReel[horizontalDiceReel.Length - 1] = temp;
         }
 
         verticalDiceReel[verticalFaceIndex] = horizontalDiceReel[horizontalFaceIndex];
     }
+
+    // void MoveVertically(int dir)
+    // {
+    //     if (dir < 0)
+    //     {
+    //         if (verticalFaceIndex - 1 < 0)
+    //         {
+    //             verticalFaceIndex = verticalDiceReel.Length - 1;
+    //         }
+    //         else
+    //         {
+    //             verticalFaceIndex -= 1;
+    //         }
+
+    //     }
+    //     else
+    //     {
+    //         if (verticalFaceIndex + 1 > verticalDiceReel.Length - 1)
+    //         {
+    //             verticalFaceIndex = 0;
+    //         }
+    //         else
+    //         {
+    //             verticalFaceIndex += 1;
+    //         }
+    //     }
+
+    //     horizontalDiceReel[horizontalFaceIndex] = verticalDiceReel[verticalFaceIndex];
+    // }
+
+    // void MoveHorizontal(int dir)
+    // {
+
+    //     if (dir > 0)
+    //     {
+    //         if (horizontalFaceIndex - 1 < 0)
+    //         {
+    //             horizontalFaceIndex = horizontalDiceReel.Length - 1;
+    //         }
+    //         else
+    //         {
+    //             horizontalFaceIndex -= 1;
+    //         }
+
+    //     }
+    //     else
+    //     {
+    //         if (horizontalFaceIndex + 1 > horizontalDiceReel.Length - 1)
+    //         {
+    //             horizontalFaceIndex = 0;
+    //         }
+    //         else
+    //         {
+    //             horizontalFaceIndex += 1;
+    //         }
+    //     }
+
+    //     verticalDiceReel[verticalFaceIndex] = horizontalDiceReel[horizontalFaceIndex];
+    // }
 
     public int getCurrentFace()
     {

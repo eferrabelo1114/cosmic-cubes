@@ -123,9 +123,6 @@ public class LevelManager : MonoBehaviour
         // Level is completed, load next level
         if (!leveCompleted)
         {
-            Debug.Log("Level Completed");
-
-
             levelLoader.LoadLevel(NextLevel);
             leveCompleted = true;
         }

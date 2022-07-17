@@ -77,9 +77,9 @@ public class StartingMenuManager : MonoBehaviour
     {
         int worldReached = PlayerPrefs.GetInt("WorldReached");
         int levelReached = PlayerPrefs.GetInt("LevelReached");
-        
+
         string level = worldReached + "-" + levelReached;
-        
+
         levelLoader.LoadLevel(level);
     }
 

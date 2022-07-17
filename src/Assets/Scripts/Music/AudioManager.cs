@@ -103,7 +103,6 @@ public class AudioManager : MonoBehaviour
 
         AudioClip audioClip = audioAssets.getAudioClip(clip);
         StopAllCoroutines();
-        Debug.Log("Play music");
         StartCoroutine(FadeTrack(audioClip));
 
         currentPlayingTrack = clip;

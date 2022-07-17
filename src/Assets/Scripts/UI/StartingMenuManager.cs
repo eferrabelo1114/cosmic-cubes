@@ -53,18 +53,6 @@ public class StartingMenuManager : MonoBehaviour
             SceneHelper.LoadScene("OptionsMenu", false);
         });
 
-        int worldReached = PlayerPrefs.GetInt("WorldReached");
-        int levelReached = PlayerPrefs.GetInt("LevelReached");
-        
-        if (worldReached == null) {
-            PlayerPrefs.SetInt("WorldReached", 0);
-            worldReached = 0;
-        }
-
-        if (levelReached == null || levelReached == 0) {
-            PlayerPrefs.SetInt("LevelReached", 1);
-            levelReached = 1;
-        }
 
         AudioManager.instance.PlayMusic("2loop");
     }
@@ -75,8 +63,8 @@ public class StartingMenuManager : MonoBehaviour
 
     void StartGame()
     {
-        int worldReached = PlayerPrefs.GetInt("WorldReached");
-        int levelReached = PlayerPrefs.GetInt("LevelReached");
+        int worldReached = PlayerPrefs.GetInt("WorldReached", 0);
+        int levelReached = PlayerPrefs.GetInt("LevelReached", 1);
 
         string level = worldReached + "-" + levelReached;
 

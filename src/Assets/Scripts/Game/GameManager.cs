@@ -53,6 +53,11 @@ public class GameManager : MonoBehaviour
     }
 
     public void RestartLevel() {
+        LevelManager levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
+        if (currentLevel != levelManager.level) {
+            currentLevel = levelManager.level;
+        }
+
         SceneHelper.LoadScene(currentLevel, false);
 
         if (gamePaused) { UnpauseGame(); }

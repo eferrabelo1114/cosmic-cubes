@@ -100,7 +100,7 @@ public class LevelManager : MonoBehaviour
             GameObject.Find("Player").GetComponent<PlayerController>().loadFaces(startingFace.verticalDiceReel, startingFace.horizontalDiceReel);
         });
 
-        AudioManager.instance.PlayMusic("1loop", true, true);
+        AudioManager.instance.PlayMusic("World0", true, true);
     }
 
     void Update()

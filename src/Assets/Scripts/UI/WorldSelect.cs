@@ -20,12 +20,9 @@ public class WorldSelect : MonoBehaviour
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
 
-        if (worldReached == 0) {
-            
-            world0Button.onClick.AddListener(() => {
-                ChangeWorld(0);
-            });
-        }
+        world0Button.onClick.AddListener(() => {
+            ChangeWorld(0);
+        });
 
 
         world1Button.onClick.AddListener(() => {

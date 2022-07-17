@@ -19,7 +19,6 @@ public class PauseButtonAnimator : MonoBehaviour, IPointerEnterHandler, IPointer
 
     void Start() {
         startPos = buttonText.transform.localPosition;
-        buttonText.GetComponent<Text>().color = notHoverTextColor;
     }
 
     void ResetButton() {

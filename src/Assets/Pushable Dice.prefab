@@ -424,7 +424,7 @@ Animator:
   m_GameObject: {fileID: 6632488565626347084}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 474dfbddab92873489d655b37a269222, type: 2}
+  m_Controller: {fileID: 9100000, guid: a204b78a6e0dbdc48831fbf22b3bccd0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -510,7 +510,13 @@ MonoBehaviour:
   botFace: 0
   rightFace: 0
   leftFace: 0
-  indicators: []
+  indicators:
+  - {fileID: 1523535801, guid: 4f6f6932b53b5704692b0529e9c5ae57, type: 3}
+  - {fileID: 1945775388, guid: 4f6f6932b53b5704692b0529e9c5ae57, type: 3}
+  - {fileID: 50302740, guid: 4f6f6932b53b5704692b0529e9c5ae57, type: 3}
+  - {fileID: -1309682986, guid: 4f6f6932b53b5704692b0529e9c5ae57, type: 3}
+  - {fileID: -1108468593, guid: 4f6f6932b53b5704692b0529e9c5ae57, type: 3}
+  - {fileID: -538288358, guid: 4f6f6932b53b5704692b0529e9c5ae57, type: 3}
   right: {fileID: 6632488566169992378}
   left: {fileID: 6632488566385973047}
   up: {fileID: 6632488565483788710}

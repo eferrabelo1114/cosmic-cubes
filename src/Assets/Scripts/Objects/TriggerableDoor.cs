@@ -21,7 +21,7 @@ public class TriggerableDoor : Triggerable
 
     override public void trigger()
     {
-        gameObject.layer = LayerMask.NameToLayer("Objects");
+        gameObject.layer = LayerMask.NameToLayer("Default");
     }
 
     override public void unTrigger()

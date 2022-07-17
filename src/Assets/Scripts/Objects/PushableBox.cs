@@ -8,7 +8,8 @@ public class PushableBox : MonoBehaviour
     public Transform movePoint;
     public LayerMask collisionLayer;
     public Animator anim;
-    bool canMove = true;
+    public bool canMove = true;
+    public bool isMoving = false;
     float delay = .5f;
 
     public int[] verticalDiceReel = { 1, 5, 6 };
@@ -28,6 +29,7 @@ public class PushableBox : MonoBehaviour
     public GameObject down;
     public GameObject sfx;
     public StartingFaceConfig faceConfig;
+    public bool isSliding = false;
 
     // Start is called before the first frame update
     void Start()
@@ -41,9 +43,21 @@ public class PushableBox : MonoBehaviour
         }
 
     }
+    public void Slide(bool horizontal, float axis)
+    {
+        Vector3 dir = horizontal ? new Vector3(axis, 0f, 0f) : new Vector3(0f, axis, 0f);
+        canMove = false;
+        isMoving = true;
+        Debug.Log("SLIDE");
+        while (!Physics2D.OverlapCircle(movePoint.position + dir, .2f, collisionLayer))
+        {
+            movePoint.position += dir;
+        }
 
-    // Update is called once per frame
-    void Update()
+        canMove = true;
+        isMoving = false;
+    }
+    public void PushDie(bool horizontal, float axis, Vector3 dir)
     {
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
 
@@ -103,12 +117,45 @@ public class PushableBox : MonoBehaviour
         }
         else
         {
+            if (isSliding)
+            {
+                Slide(horizontal, axis);
+            }
             anim.SetBool("MoveRight", false);
             anim.SetBool("MoveLeft", false);
             anim.SetBool("MoveUp", false);
             anim.SetBool("MoveDown", false);
             anim.SetBool("isMoving", false);
+            // isMoving = false;
+        }
 
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
+        if (!(Vector3.Distance(transform.position, movePoint.position) <= .05f && canMove))
+        {
+
+            anim.SetBool("MoveRight", false);
+            anim.SetBool("MoveLeft", false);
+            anim.SetBool("MoveUp", false);
+            anim.SetBool("MoveDown", false);
+            anim.SetBool("isMoving", false);
+        }
+        else
+        {
+            currentFace = horizontalDiceReel[horizontalFaceIndex];
+            anim.SetInteger("CurrentFace", currentFace);
+            topFace = (verticalFaceIndex - 1 < 0 ? verticalDiceReel[verticalDiceReel.Length - 1] : verticalDiceReel[verticalFaceIndex - 1]);
+            botFace = (verticalFaceIndex + 1 > verticalDiceReel.Length - 1 ? verticalDiceReel[0] : verticalDiceReel[verticalFaceIndex + 1]);
+            leftFace = (horizontalFaceIndex - 1 < 0 ? horizontalDiceReel[horizontalDiceReel.Length - 1] : horizontalDiceReel[horizontalFaceIndex - 1]);
+            rightFace = (horizontalFaceIndex + 1 > horizontalDiceReel.Length - 1 ? horizontalDiceReel[0] : horizontalDiceReel[horizontalFaceIndex + 1]);
+            right.GetComponent<SpriteRenderer>().sprite = indicators[leftFace - 1];
+            left.GetComponent<SpriteRenderer>().sprite = indicators[rightFace - 1];
+            up.GetComponent<SpriteRenderer>().sprite = indicators[botFace - 1];
+            down.GetComponent<SpriteRenderer>().sprite = indicators[topFace - 1];
         }
 
     }

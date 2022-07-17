@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b51aad4cf29f2ff40aec575d8efaeaff, type: 3}
   m_Name: Face 1
   m_EditorClassIdentifier: 
-  verticalDiceReel: 060000000100000005000000
-  horizontalDiceReel: 02000000030000000100000004000000
+  verticalDiceReel: 020000000100000005000000
+  horizontalDiceReel: 06000000030000000100000004000000

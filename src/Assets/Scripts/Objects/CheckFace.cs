@@ -63,7 +63,6 @@ public class CheckFace : MonoBehaviour
 
                 Vector2 playerPosition = gameObject.transform.position;
                 Vector2 objectPosition = collider2D.gameObject.transform.position;
-                Debug.DrawLine(playerPosition, objectPosition);
                 float offset = Vector2.Distance(playerPosition, objectPosition);
 
                 if (offset < minDist)

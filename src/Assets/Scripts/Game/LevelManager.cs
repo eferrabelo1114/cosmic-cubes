@@ -125,6 +125,7 @@ public class LevelManager : MonoBehaviour
         {
             levelLoader.LoadLevel(NextLevel);
             leveCompleted = true;
+            AudioManager.instance.PlaySound("exit!");
         }
     }
 }

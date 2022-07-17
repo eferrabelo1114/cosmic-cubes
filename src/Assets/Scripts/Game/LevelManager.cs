@@ -39,7 +39,7 @@ public class LevelManager : MonoBehaviour
         GameObject AudioManagerObject = GameObject.FindGameObjectWithTag("AudioManager");
         if (AudioManagerObject == null)
         {
-           Instantiate(AudioManagerPrefab);
+            Instantiate(AudioManagerPrefab);
         }
     }
 
@@ -51,7 +51,8 @@ public class LevelManager : MonoBehaviour
         // This is here for testing levels without using start menu
         // TODO: Move this to gamemanager instead of level manager
         string currentLevel = gameManager.currentLevel;
-        if (currentLevel == null || currentLevel == "") {
+        if (currentLevel == null || currentLevel == "")
+        {
             gameManager.currentLevel = level;
         }
 
@@ -72,7 +73,8 @@ public class LevelManager : MonoBehaviour
         }
 
         // Make sure StartingFaces is set
-        if (startingFace == null) {
+        if (startingFace == null)
+        {
             Debug.LogWarning("Level has no starting face!");
             return;
         }
@@ -95,7 +97,7 @@ public class LevelManager : MonoBehaviour
 
         CallAfterDelay.Create(0, () =>
         {
-            GameObject.FindGameObjectWithTag("Dice").GetComponent<PlayerController>().loadFaces(startingFace.verticalDiceReel, startingFace.horizontalDiceReel);
+            GameObject.Find("Player").GetComponent<PlayerController>().loadFaces(startingFace.verticalDiceReel, startingFace.horizontalDiceReel);
         });
 
         AudioManager.instance.PlayMusic("1loop");

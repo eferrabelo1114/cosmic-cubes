@@ -25,11 +25,13 @@ public class TriggerableDoor : Triggerable
     {
         gameObject.layer = LayerMask.NameToLayer("Default");
         gameObject.GetComponent<SpriteRenderer>().sprite = openedDoor;
+        AudioManager.instance.PlaySound("doortrigger");
     }
 
     override public void unTrigger()
     {
         gameObject.layer = LayerMask.NameToLayer("Collision");
         gameObject.GetComponent<SpriteRenderer>().sprite = closedDoor;
+        AudioManager.instance.PlaySound("doortrigger");
     }
 }

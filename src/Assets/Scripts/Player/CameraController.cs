@@ -21,31 +21,38 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        player = GameObject.FindGameObjectWithTag("Dice").transform;
+
+        player = GameObject.Find("Player").transform;
         cam = GetComponent<Camera>();
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        
+
         Vector3 currentPos = gameObject.transform.position;
         Vector3 screenPos = cam.WorldToScreenPoint(player.position);
 
-        if (targPos != new Vector3(0, 0, 0)) {
+        if (targPos != new Vector3(0, 0, 0))
+        {
             gameObject.transform.position = Vector3.Lerp(currentPos, targPos, speed * Time.deltaTime);
         }
 
-        if (screenPos.x <= minX) {
+        if (screenPos.x <= minX)
+        {
             targPos = currentPos -= adjustCameraX;
-        } else if(screenPos.x >= maxX) {
+        }
+        else if (screenPos.x >= maxX)
+        {
             targPos = currentPos += adjustCameraX;
         }
 
-        if (screenPos.y <= minY) {
+        if (screenPos.y <= minY)
+        {
             targPos = currentPos -= adjustCameraY;
-        } else if(screenPos.y >= maxY) {
+        }
+        else if (screenPos.y >= maxY)
+        {
             targPos = currentPos += adjustCameraY;
         }
     }

@@ -13,7 +13,9 @@ public class SlideBlock : Triggerable
         {
             if (checkFace.closestInteractable && checkFace.closestInteractable.GetComponent<PlayerController>())
             {
+                checkFace.closestInteractable.GetComponent<PlayerController>().isSliding = true;
                 checkFace.closestInteractable.GetComponent<PlayerController>().Slide();
+
 
             }
             else if (checkFace.closestInteractable && checkFace.closestInteractable.GetComponent<PushableBox>())
@@ -30,8 +32,15 @@ public class SlideBlock : Triggerable
 
         if (!isTriggered && checkFace.closestInteractable && checkFace.closestInteractable.GetComponent<PlayerController>())
         {
-            checkFace.closestInteractable.GetComponent<PlayerController>().Slide();
-            isTriggered = true;
+            if (checkFace.closestInteractable.GetComponent<PlayerController>().isSliding == false)
+            {
+                checkFace.closestInteractable.GetComponent<PlayerController>().isSliding = true;
+                checkFace.closestInteractable.GetComponent<PlayerController>().Slide();
+                isTriggered = true;
+            }
+
+
+
         }
         else if (!isTriggered && checkFace.closestInteractable && checkFace.closestInteractable.GetComponent<PushableBox>())
         {
@@ -45,6 +54,11 @@ public class SlideBlock : Triggerable
     {
         // if (slide)
         isTriggered = false;
+
+        if (checkFace.closestInteractable && checkFace.closestInteractable.GetComponent<PlayerController>())
+        {
+            // checkFace.closestInteractable.GetComponent<PlayerController>().isSliding = false;
+        }
 
         if (checkFace.closestInteractable && checkFace.closestInteractable.GetComponent<PushableBox>())
         {

@@ -42,6 +42,13 @@ public class LevelManager : MonoBehaviour
         {
             Instantiate(AudioManagerPrefab);
         }
+
+        // For level testing in case you forget to remove camera
+        GameObject camera = GameObject.Find("Main Camera");
+        if (camera != null)
+        {
+           Destroy(camera);
+        }
     }
 
     void Start()

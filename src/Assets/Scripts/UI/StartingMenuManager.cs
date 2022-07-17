@@ -53,15 +53,6 @@ public class StartingMenuManager : MonoBehaviour
             SceneHelper.LoadScene("OptionsMenu", false);
         });
 
-        AudioManager.instance.PlayMusic("2loop");
-    }
-
-    void LevelSelect() {
-        SceneHelper.LoadScene("WorldSelect", false);
-    }
-
-    void StartGame()
-    {
         int worldReached = PlayerPrefs.GetInt("WorldReached");
         int levelReached = PlayerPrefs.GetInt("LevelReached");
         
@@ -75,6 +66,18 @@ public class StartingMenuManager : MonoBehaviour
             levelReached = 1;
         }
 
+        AudioManager.instance.PlayMusic("2loop");
+    }
+
+    void LevelSelect() {
+        SceneHelper.LoadScene("WorldSelect", false);
+    }
+
+    void StartGame()
+    {
+        int worldReached = PlayerPrefs.GetInt("WorldReached");
+        int levelReached = PlayerPrefs.GetInt("LevelReached");
+        
         string level = worldReached + "-" + levelReached;
         
         levelLoader.LoadLevel(level);

@@ -44,9 +44,12 @@ public class SlideBlock : Triggerable
         }
         else if (!isTriggered && checkFace.closestInteractable && checkFace.closestInteractable.GetComponent<PushableBox>())
         {
-            checkFace.closestInteractable.GetComponent<PushableBox>().isSliding = true;
-            checkFace.closestInteractable.GetComponent<PushableBox>().canMove = false;
-            isTriggered = true;
+            if (checkFace.closestInteractable.GetComponent<PushableBox>().isSliding == false)
+            {
+                checkFace.closestInteractable.GetComponent<PushableBox>().isSliding = true;
+                checkFace.closestInteractable.GetComponent<PushableBox>().canMove = false;
+                isTriggered = true;
+            }
         }
 
     }

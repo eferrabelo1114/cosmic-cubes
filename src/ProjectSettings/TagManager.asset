@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Dice
+  - PlayerSpawn
+  - EndOfLevel
+  - GameManager
+  - LevelManager
+  - AudioManager
   layers:
   - Default
   - TransparentFX

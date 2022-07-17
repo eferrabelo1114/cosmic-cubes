@@ -16,6 +16,11 @@ public class FaceSetter : Triggerable
             checkFace.closestInteractable.GetComponent<PlayerController>().loadFaces(face.verticalDiceReel, face.horizontalDiceReel);
             isTriggered = true;
         }
+        else if (!isTriggered && checkFace.closestInteractable && checkFace.closestInteractable.GetComponent<PushableBox>())
+        {
+            checkFace.closestInteractable.GetComponent<PushableBox>().loadFaces(face.verticalDiceReel, face.horizontalDiceReel);
+            isTriggered = true;
+        }
 
     }
     override public void unTrigger()

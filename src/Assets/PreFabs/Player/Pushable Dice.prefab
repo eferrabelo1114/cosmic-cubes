@@ -208,13 +208,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4437669515412784324}
-  - component: {fileID: 4437669515412784323}
   - component: {fileID: 4437669515412784325}
   - component: {fileID: 4437669515412784327}
   - component: {fileID: 4437669515412784326}
   - component: {fileID: 5020917691817170201}
   - component: {fileID: -4928759996851678889}
-  m_Layer: 0
+  - component: {fileID: 667319435025064214}
+  m_Layer: 3
   m_Name: Pushable Dice
   m_TagString: Dice
   m_Icon: {fileID: 0}
@@ -246,46 +246,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4437669515412784323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4437669515412784322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3be719d91e4a7c1408b659cf0edd0750, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  movePoint: {fileID: 4437669515069107972}
-  collisionLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  anim: {fileID: 4437669515412784326}
-  verticalDiceReel: 010000000500000006000000
-  horizontalDiceReel: 02000000030000000500000004000000
-  verticalFaceIndex: 1
-  horizontalFaceIndex: 2
-  currentFace: 0
-  topFace: 0
-  botFace: 0
-  rightFace: 0
-  leftFace: 0
-  indicators:
-  - {fileID: 1523535801, guid: 4f6f6932b53b5704692b0529e9c5ae57, type: 3}
-  - {fileID: 1945775388, guid: 4f6f6932b53b5704692b0529e9c5ae57, type: 3}
-  - {fileID: 50302740, guid: 4f6f6932b53b5704692b0529e9c5ae57, type: 3}
-  - {fileID: -1309682986, guid: 4f6f6932b53b5704692b0529e9c5ae57, type: 3}
-  - {fileID: -1108468593, guid: 4f6f6932b53b5704692b0529e9c5ae57, type: 3}
-  - {fileID: -538288358, guid: 4f6f6932b53b5704692b0529e9c5ae57, type: 3}
-  right: {fileID: 4437669515959674420}
-  left: {fileID: 4437669515710123449}
-  up: {fileID: 4437669516620432168}
-  down: {fileID: 4437669515264220933}
-  sfx: {fileID: 6808075854930276244}
-  faceConfig: {fileID: 0}
 --- !u!114 &4437669515412784325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,7 +347,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -401,7 +361,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.25, y: 1.25}
   m_EdgeRadius: 0
 --- !u!50 &-4928759996851678889
 Rigidbody2D:
@@ -424,6 +384,41 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &667319435025064214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4437669515412784322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f1a88a4c576a354baaff5ed3a686e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  movePoint: {fileID: 4437669515069107972}
+  collisionLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  anim: {fileID: 4437669515412784326}
+  isMoving: 0
+  verticalDiceReel: 010000000500000006000000
+  horizontalDiceReel: 02000000030000000500000004000000
+  verticalFaceIndex: 1
+  horizontalFaceIndex: 2
+  currentFace: 0
+  topFace: 0
+  botFace: 0
+  rightFace: 0
+  leftFace: 0
+  indicators: []
+  right: {fileID: 4437669515959674420}
+  left: {fileID: 4437669515710123449}
+  up: {fileID: 4437669516620432168}
+  down: {fileID: 4437669515264220933}
+  sfx: {fileID: 6808075854930276244}
+  faceConfig: {fileID: 11400000, guid: 67bade4dfff0128459b835382320b93e, type: 2}
 --- !u!1 &4437669515565524592
 GameObject:
   m_ObjectHideFlags: 0

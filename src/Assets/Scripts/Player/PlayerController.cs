@@ -28,13 +28,12 @@ public class PlayerController : MonoBehaviour
     public GameObject left;
     public GameObject up;
     public GameObject down;
-    public GameObject sfx;
     public StartingFaceConfig faceConfig;
 
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         transform.position = gameManager.currentPlayerSpawnpoint;
 
         movePoint.parent = null;
@@ -43,7 +42,6 @@ public class PlayerController : MonoBehaviour
         {
             loadFaces(faceConfig.verticalDiceReel, faceConfig.horizontalDiceReel);
         }
-
     }
 
     public void Slide()
@@ -84,12 +82,12 @@ public class PlayerController : MonoBehaviour
 
         if (Vector3.Distance(transform.position, movePoint.position) <= .05f && canMove)
         {
-
+            
             if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
             {
-                sfx.GetComponent<SoundEffects>().playOnce(sfx.GetComponent<SoundEffects>().soundEffects[0]);
+                AudioManager.instance.PlaySound("move");
                 anim.SetBool("isMoving", true);
-
+                // isMoving = true;
                 if (Input.GetAxisRaw("Horizontal") == 1f)
                 {
                     anim.SetBool("MoveRight", true);
@@ -98,17 +96,28 @@ public class PlayerController : MonoBehaviour
                 {
                     anim.SetBool("MoveLeft", true);
                 }
+                // detector.position = movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal");
                 if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), .2f, collisionLayer))
                 {
                     MoveHorizontal((int)Mathf.Sign(Input.GetAxisRaw("Horizontal")));
                     movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
+                }
+                else
+                {
+                    Collider2D collider = Physics2D.OverlapCircle(movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), .2f, collisionLayer);
+
+                    if (collider.gameObject.GetComponent<PushableBox>() != null)
+                    {
+                        Debug.Log("Pushed Horizontal");
+                        collider.gameObject.GetComponent<PushableBox>().PushDie(true, Input.GetAxisRaw("Horizontal"), new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f));
+                    }
                 }
                 StartCoroutine(MoveDelay());
             }
 
             else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
             {
-                sfx.GetComponent<SoundEffects>().playOnce(sfx.GetComponent<SoundEffects>().soundEffects[0]);
+                AudioManager.instance.PlaySound("move");
                 if (Input.GetAxisRaw("Vertical") == 1f)
                 {
                     anim.SetBool("MoveUp", true);
@@ -123,6 +132,17 @@ public class PlayerController : MonoBehaviour
                     MoveVertically((int)Mathf.Sign(Input.GetAxisRaw("Vertical")));
                     movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
                 }
+                else
+                {
+                    Collider2D collider = Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f), .2f, collisionLayer);
+
+                    if (collider.gameObject.GetComponent<PushableBox>() != null)
+                    {
+                        Debug.Log("Pushed Vertical");
+                        collider.gameObject.GetComponent<PushableBox>().PushDie(false, Input.GetAxisRaw("Vertical"), new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f));
+                    }
+                }
+
                 StartCoroutine(MoveDelay());
             }
             currentFace = horizontalDiceReel[horizontalFaceIndex];
@@ -143,18 +163,19 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("MoveUp", false);
             anim.SetBool("MoveDown", false);
             anim.SetBool("isMoving", false);
-
+            // isMoving = false;
         }
 
     }
-
 
     private IEnumerator MoveDelay()
     {
         Debug.Log("go");
         canMove = false;
+        isMoving = true;
         yield return new WaitForSeconds(delay);
         canMove = true;
+        isMoving = false;
     }
 
     void MoveVertically(int dir)

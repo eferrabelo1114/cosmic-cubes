@@ -485,6 +485,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: End
       objectReference: {fileID: 0}
+    - target: {fileID: 5664398828407887567, guid: 1a133c6bc3dbe184ba6b7eb094b8b207, type: 3}
+      propertyPath: m_TagString
+      value: EndOfLevel
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a133c6bc3dbe184ba6b7eb094b8b207, type: 3}
 --- !u!1 &230935689
@@ -516,8 +520,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2435266ec9c0e9438d04b88d813cf0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingFace: {fileID: 0}
   NextLevel: 1-2
   LevelLoader: {fileID: 8465961255432752983, guid: 601cb430af6b54d438d866d1969e3b9d, type: 3}
+  GameManagerPrefab: {fileID: 0}
 --- !u!4 &230935691
 Transform:
   m_ObjectHideFlags: 0
@@ -1525,7 +1531,7 @@ GameObject:
   - component: {fileID: 1880173724}
   m_Layer: 0
   m_Name: PlayerSpawn
-  m_TagString: Untagged
+  m_TagString: PlayerSpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2035,7 +2041,7 @@ GameObject:
   - component: {fileID: 1888451589}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

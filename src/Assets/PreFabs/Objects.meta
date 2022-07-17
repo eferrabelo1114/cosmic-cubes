@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:src/Assets/PreFabs/Objects.meta
 guid: d4c700c930afb4b42b31e874523a0e55
+========
+guid: 4d12ff360d6d5c04eae84ca8158a7a6b
+>>>>>>>> ethans-branch:src/Assets/Other.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

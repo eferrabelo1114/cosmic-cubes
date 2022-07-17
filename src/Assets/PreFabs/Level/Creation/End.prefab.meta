@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:src/Assets/PreFabs/Player/Pushable Dice.prefab.meta
+guid: 8f3d0014c69ed0844a69b0bff62141e0
+========
+guid: 77b23846cf6b7bf4f8da04fae35e2926
+>>>>>>>> ethans-branch:src/Assets/PreFabs/Level/Creation/End.prefab.meta
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

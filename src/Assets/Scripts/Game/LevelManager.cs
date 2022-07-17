@@ -9,14 +9,17 @@ public class LevelManager : MonoBehaviour
     private GameObject LevelSpawnpoint;
     private CheckFace endFaceChecker;
     private LevelLoader levelLoader;
-    public StartingFaceConfig startingFace;
     private bool leveCompleted = false;
 
+    [Header("Level Settings")]
+    public StartingFaceConfig startingFace;
     public string level = "0-0";
     public string NextLevel = "1-2";
 
-    public Transform LevelLoader;
-    public Transform GameManagerPrefab;
+    [Header("Dont change these")]
+    public GameObject AudioManagerPrefab;
+    public GameObject LevelLoader;
+    public GameObject GameManagerPrefab;
 
     void Awake()
     {
@@ -30,6 +33,13 @@ public class LevelManager : MonoBehaviour
         else
         {
             gameManager = GameManagerObject.GetComponent<GameManager>();
+        }
+
+        // For level testing in case you forget to put audio manager in scene
+        GameObject AudioManagerObject = GameObject.FindGameObjectWithTag("AudioManager");
+        if (AudioManagerObject == null)
+        {
+           Instantiate(AudioManagerPrefab);
         }
     }
 
@@ -80,10 +90,15 @@ public class LevelManager : MonoBehaviour
         // Finally spawn the player in
         SceneHelper.LoadScene("Player", true);
 
+        // Make end point invisible
+        EndOfLevelObject.GetComponent<SpriteRenderer>().enabled = false;
+
         CallAfterDelay.Create(0, () =>
         {
             GameObject.FindGameObjectWithTag("Dice").GetComponent<PlayerController>().loadFaces(startingFace.verticalDiceReel, startingFace.horizontalDiceReel);
         });
+
+        AudioManager.instance.PlayMusic("1loop");
     }
 
     void Update()

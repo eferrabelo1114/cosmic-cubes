@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27102919a03fa9c4aa222f3d838542be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  testSFXClip: {fileID: 0}
+  testMusicClip: {fileID: 0}
   GameManagerPrefab: {fileID: 8796024930328481484, guid: 0aa2b357cae79174f98a371e86b636ed, type: 3}
+  AudioManagerPrefab: {fileID: 5527853154313966433, guid: d6f26a87e69d41e418b708e2b32a1410, type: 3}
   LevelManager: {fileID: 8465961255432752983, guid: 601cb430af6b54d438d866d1969e3b9d, type: 3}
   StartGameButton: {fileID: 0}

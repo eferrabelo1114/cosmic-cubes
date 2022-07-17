@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingFace: {fileID: 0}
+  level: 0-0
   NextLevel: 1-2
-  LevelLoader: {fileID: 8465961255432752983, guid: 601cb430af6b54d438d866d1969e3b9d, type: 3}
-  GameManagerPrefab: {fileID: 8796024930328481474, guid: 0aa2b357cae79174f98a371e86b636ed, type: 3}
+  AudioManagerPrefab: {fileID: 5527853154313966433, guid: d6f26a87e69d41e418b708e2b32a1410, type: 3}
+  LevelLoader: {fileID: 8465961255432752982, guid: 601cb430af6b54d438d866d1969e3b9d, type: 3}
+  GameManagerPrefab: {fileID: 8796024930328481484, guid: 0aa2b357cae79174f98a371e86b636ed, type: 3}

@@ -8,7 +8,12 @@ public class StartingMenuManager : MonoBehaviour
     private Animator Transition;
     private LevelLoader levelLoader;
 
+    public AudioClip testSFXClip;
+    public AudioClip testMusicClip;
+
     public GameObject GameManagerPrefab;
+    public GameObject AudioManagerPrefab;
+
     public Transform LevelManager;
     public Button StartGameButton;
 
@@ -25,6 +30,13 @@ public class StartingMenuManager : MonoBehaviour
         {
             gameManager = GameManagerObject.GetComponent<GameManager>();
         }
+
+        // For level testing in case you forget to put audio manager in scene
+        GameObject AudioManagerObject = GameObject.FindGameObjectWithTag("AudioManager");
+        if (AudioManagerObject == null)
+        {
+           Instantiate(AudioManagerPrefab);
+        }
     }
 
     void Start()
@@ -34,8 +46,7 @@ public class StartingMenuManager : MonoBehaviour
 
         StartGameButton.onClick.AddListener(StartGame);
 
-        SceneHelper.LoadScene("Music", true);
-        AudioManager.PlaySound();
+        AudioManager.instance.PlayMusic("2loop");
     }
 
     void StartGame()

@@ -4,13 +4,16 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PauseButtonAnimator : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class PauseButtonAnimator : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
     private Vector3 startPos;
+    private bool hovering = false;
 
     public GameObject buttonText;
     
     public Vector3 hoverPosDifference;
+    public Vector3 downPosDifference;
+
     public Color notHoverTextColor;
     public Color hoverTextColor;
 
@@ -30,12 +33,31 @@ public class PauseButtonAnimator : MonoBehaviour, IPointerEnterHandler, IPointer
     }
 
     public void OnPointerEnter(PointerEventData eventData){
-       Debug.Log("Pointer Entered");
-       ButtonHover();
+        Debug.Log(eventData.pointerEnter);
+        bool isHoveringSelf = eventData.pointerEnter == gameObject;
+        if (!isHoveringSelf) { return; }
+        if (hovering) { return; }
+
+        AudioManager.instance.PlaySound("Button_Hover");
+        ButtonHover();
+        hovering = true;
     }
 
     public void OnPointerExit(PointerEventData eventData){
-       Debug.Log("Pointer Exited");
-       ResetButton();
+        if (!hovering) { return; }
+
+        ResetButton();
+        hovering = false;
+    }
+
+    public void OnPointerDown(PointerEventData eventData) {
+        buttonText.transform.localScale = new Vector3(0.97f, 0.97f, 0);
+        buttonText.transform.localPosition = startPos - hoverPosDifference;
+    }
+
+    public void OnPointerUp(PointerEventData eventData) {
+        AudioManager.instance.PlaySound("Button_Click");
+        buttonText.transform.localScale = new Vector3(1f, 1f, 0);
+        buttonText.transform.localPosition = startPos;
     }
 }

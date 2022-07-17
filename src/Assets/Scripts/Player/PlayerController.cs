@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour
     public GameObject left;
     public GameObject up;
     public GameObject down;
-    public GameObject sfx;
     public StartingFaceConfig faceConfig;
 
     // Start is called before the first frame update
@@ -43,7 +42,35 @@ public class PlayerController : MonoBehaviour
         {
             loadFaces(faceConfig.verticalDiceReel, faceConfig.horizontalDiceReel);
         }
+    }
 
+    public void Slide()
+    {
+
+        Vector3 dir;
+        canMove = false;
+        isMoving = true;
+        if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
+        {
+            dir = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
+            while (!Physics2D.OverlapCircle(movePoint.position + dir, .2f, collisionLayer))
+            {
+                movePoint.position += dir;
+            }
+        }
+
+        else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
+        {
+            dir = new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
+            while (!Physics2D.OverlapCircle(movePoint.position + dir, .2f, collisionLayer))
+            {
+                movePoint.position += dir;
+            }
+        }
+
+        canMove = true;
+        isMoving = false;
+        // StartCoroutine(MoveDelay());
     }
 
     // Update is called once per frame
@@ -51,12 +78,14 @@ public class PlayerController : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
 
+        // Slide(new Vector3(1f, 0f, 0f));
+
         if (Vector3.Distance(transform.position, movePoint.position) <= .05f && canMove)
         {
-
+            
             if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
             {
-                sfx.GetComponent<SoundEffects>().playOnce(sfx.GetComponent<SoundEffects>().soundEffects[0]);
+                AudioManager.instance.PlaySound("move");
                 anim.SetBool("isMoving", true);
                 // isMoving = true;
                 if (Input.GetAxisRaw("Horizontal") == 1f)
@@ -88,7 +117,7 @@ public class PlayerController : MonoBehaviour
 
             else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
             {
-                sfx.GetComponent<SoundEffects>().playOnce(sfx.GetComponent<SoundEffects>().soundEffects[0]);
+                AudioManager.instance.PlaySound("move");
                 if (Input.GetAxisRaw("Vertical") == 1f)
                 {
                     anim.SetBool("MoveUp", true);

@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     bool canMove = true;
     float delay = .5f;
     public bool isMoving = false;
+    public bool isSliding = false;
     public int[] verticalDiceReel = { 1, 5, 6 };
     public int[] horizontalDiceReel = { 2, 3, 5, 6 };
 
@@ -47,7 +48,8 @@ public class PlayerController : MonoBehaviour
 
     public void Slide()
     {
-
+        // if (!isSliding)
+        // {
         Vector3 dir;
         canMove = false;
         isMoving = true;
@@ -67,10 +69,15 @@ public class PlayerController : MonoBehaviour
             {
                 movePoint.position += dir;
             }
+
         }
 
         canMove = true;
         isMoving = false;
+        // isSliding = false;
+
+        // }
+
         // StartCoroutine(MoveDelay());
     }
 
@@ -157,6 +164,14 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            if (isSliding)
+            {
+                if (Vector3.Distance(transform.position, movePoint.position) <= .05f)
+                {
+                    isSliding = false;
+                }
+
+            }
             anim.SetBool("MoveRight", false);
             anim.SetBool("MoveLeft", false);
             anim.SetBool("MoveUp", false);

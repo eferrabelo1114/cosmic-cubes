@@ -209,7 +209,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4437669515412784324}
   - component: {fileID: 4437669515412784323}
-  - component: {fileID: 4437669515412784325}
   - component: {fileID: 4437669515412784327}
   - component: {fileID: 4437669515412784326}
   - component: {fileID: 5020917691817170201}
@@ -285,25 +284,6 @@ MonoBehaviour:
   up: {fileID: 4437669516620432168}
   down: {fileID: 4437669515264220933}
   faceConfig: {fileID: 0}
---- !u!114 &4437669515412784325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4437669515412784322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3506a46cfda065946bdc424061002e8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  faceList:
-  - {fileID: 710239339, guid: e9dd6d3a4dffe184fa0c13a704283545, type: 3}
-  - {fileID: -1437582817, guid: e9dd6d3a4dffe184fa0c13a704283545, type: 3}
-  - {fileID: 1733071300, guid: e9dd6d3a4dffe184fa0c13a704283545, type: 3}
-  - {fileID: -1675400961, guid: e9dd6d3a4dffe184fa0c13a704283545, type: 3}
-  - {fileID: 1657210152, guid: e9dd6d3a4dffe184fa0c13a704283545, type: 3}
-  - {fileID: 657174595, guid: e9dd6d3a4dffe184fa0c13a704283545, type: 3}
 --- !u!212 &4437669515412784327
 SpriteRenderer:
   m_ObjectHideFlags: 0

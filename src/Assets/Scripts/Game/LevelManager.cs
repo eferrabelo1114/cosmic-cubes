@@ -95,7 +95,7 @@ public class LevelManager : MonoBehaviour
 
         CallAfterDelay.Create(0, () =>
         {
-            GameObject.FindGameObjectWithTag("Dice").GetComponent<PlayerController>().loadFaces(startingFace.verticalDiceReel, startingFace.horizontalDiceReel);
+            GameObject.Find("Player").GetComponent<PlayerController>().loadFaces(startingFace.verticalDiceReel, startingFace.horizontalDiceReel);
         });
 
         AudioManager.instance.PlayMusic("1loop");

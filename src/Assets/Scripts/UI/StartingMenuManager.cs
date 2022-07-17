@@ -18,6 +18,7 @@ public class StartingMenuManager : MonoBehaviour
 
     public Button StartGameButton;
     public Button LevelButton;
+    public Button OptionsButton;
 
     void Awake()
     {
@@ -48,6 +49,10 @@ public class StartingMenuManager : MonoBehaviour
         StartGameButton.onClick.AddListener(StartGame);
         LevelButton.onClick.AddListener(LevelSelect);
 
+        OptionsButton.onClick.AddListener(() => {
+            SceneHelper.LoadScene("OptionsMenu", false);
+        });
+
         AudioManager.instance.PlayMusic("2loop");
     }
 
@@ -59,7 +64,7 @@ public class StartingMenuManager : MonoBehaviour
     {
         int worldReached = PlayerPrefs.GetInt("WorldReached");
         int levelReached = PlayerPrefs.GetInt("LevelReached");
-
+        
         if (worldReached == null) {
             PlayerPrefs.SetInt("WorldReached", 0);
             worldReached = 0;

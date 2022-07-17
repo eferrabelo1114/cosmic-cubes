@@ -142,6 +142,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1646758756431212974, guid: 8f3d0014c69ed0844a69b0bff62141e0, type: 3}
+      propertyPath: goalFace
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1646758756431212975, guid: 8f3d0014c69ed0844a69b0bff62141e0, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -908,7 +912,7 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 098d7d0f947016c4c8b052863a9cbb21, type: 2}
+    m_Data: {fileID: 11400000, guid: d7fde89921a137d46b5bfeaa6330bd31, type: 2}
   - m_RefCount: 20
     m_Data: {fileID: 11400000, guid: 577d081c53487694d8c430cf42405c23, type: 2}
   - m_RefCount: 6
@@ -917,7 +921,7 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 1
-    m_Data: {fileID: -1392817874, guid: 2246f149c84d53b46a033fc2d634806e, type: 3}
+    m_Data: {fileID: -1458670822, guid: 2246f149c84d53b46a033fc2d634806e, type: 3}
   - m_RefCount: 20
     m_Data: {fileID: -36193607, guid: 404c09c91df2ba341bf4ed89681599a3, type: 3}
   - m_RefCount: 6

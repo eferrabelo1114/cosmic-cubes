@@ -64,12 +64,12 @@ public class PushableBox : MonoBehaviour
         if (Vector3.Distance(transform.position, movePoint.position) <= .05f && canMove)
         {
 
-            if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
+            if (horizontal)
             {
                 AudioManager.instance.PlaySound("move");
                 anim.SetBool("isMoving", true);
 
-                if (Input.GetAxisRaw("Horizontal") == 1f)
+                if (axis == 1f)
                 {
                     anim.SetBool("MoveRight", true);
                 }
@@ -77,18 +77,18 @@ public class PushableBox : MonoBehaviour
                 {
                     anim.SetBool("MoveLeft", true);
                 }
-                if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), .2f, collisionLayer))
+                if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(axis, 0f, 0f), .2f, collisionLayer))
                 {
-                    MoveHorizontal((int)Mathf.Sign(Input.GetAxisRaw("Horizontal")));
-                    movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
+                    MoveHorizontal((int)Mathf.Sign(axis));
+                    movePoint.position += new Vector3(axis, 0f, 0f);
                 }
                 StartCoroutine(MoveDelay());
             }
 
-            else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
+            else if (!horizontal)
             {
                 AudioManager.instance.PlaySound("move");
-                if (Input.GetAxisRaw("Vertical") == 1f)
+                if (axis == 1f)
                 {
                     anim.SetBool("MoveUp", true);
                 }
@@ -97,10 +97,10 @@ public class PushableBox : MonoBehaviour
                     anim.SetBool("MoveDown", true);
                 }
 
-                if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f), .2f, collisionLayer))
+                if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, axis, 0f), .2f, collisionLayer))
                 {
-                    MoveVertically((int)Mathf.Sign(Input.GetAxisRaw("Vertical")));
-                    movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
+                    MoveVertically((int)Mathf.Sign(axis));
+                    movePoint.position += new Vector3(0f, axis, 0f);
                 }
                 StartCoroutine(MoveDelay());
             }

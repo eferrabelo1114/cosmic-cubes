@@ -24,6 +24,7 @@ public class ButtonTrigger : MonoBehaviour
         {
             TriggerObjects();
             triggered = true;
+            AudioManager.instance.PlaySound("buttontrigger");
             gameObject.GetComponent<SpriteRenderer>().sprite = pressedButton;
         }
     }

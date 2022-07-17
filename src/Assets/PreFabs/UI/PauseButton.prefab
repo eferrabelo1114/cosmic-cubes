@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3293232750908225638, guid: 0b089fdd3f3589f47abe2579a722f760, type: 3}
       propertyPath: m_Name
-      value: Button
+      value: PauseButton
       objectReference: {fileID: 0}
     - target: {fileID: 3993219314243119273, guid: 0b089fdd3f3589f47abe2579a722f760, type: 3}
       propertyPath: m_Pivot.x
@@ -99,6 +99,10 @@ PrefabInstance:
       propertyPath: m_Transition
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3993219314243119284, guid: 0b089fdd3f3589f47abe2579a722f760, type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4705111909691853449, guid: 0b089fdd3f3589f47abe2579a722f760, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.00000023841858
@@ -109,6 +113,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 505654989058132830, guid: 0b089fdd3f3589f47abe2579a722f760, type: 3}
+    - {fileID: 7915222809865601760, guid: 0b089fdd3f3589f47abe2579a722f760, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0b089fdd3f3589f47abe2579a722f760, type: 3}
 --- !u!1 &78639367833890163 stripped
 GameObject:

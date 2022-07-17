@@ -335,6 +335,10 @@ PrefabInstance:
       propertyPath: objectList.Array.data[0]
       value: 
       objectReference: {fileID: 932856921}
+    - target: {fileID: 3996069122001642180, guid: 1d0a869a372010949bfbb5082ea89944, type: 3}
+      propertyPath: goalFace
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3996069122001642181, guid: 1d0a869a372010949bfbb5082ea89944, type: 3}
       propertyPath: m_Name
       value: Button (1)
@@ -1055,6 +1059,10 @@ PrefabInstance:
       propertyPath: objectList.Array.data[0]
       value: 
       objectReference: {fileID: 1407853174}
+    - target: {fileID: 3996069122001642180, guid: 1d0a869a372010949bfbb5082ea89944, type: 3}
+      propertyPath: goalFace
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3996069122001642181, guid: 1d0a869a372010949bfbb5082ea89944, type: 3}
       propertyPath: m_Name
       value: Button (2)

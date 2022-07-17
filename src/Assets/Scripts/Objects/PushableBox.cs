@@ -69,7 +69,7 @@ public class PushableBox : MonoBehaviour
                 AudioManager.instance.PlaySound("move");
                 anim.SetBool("isMoving", true);
 
-                if (axis == 1f)
+                if (axis >0)
                 {
                     anim.SetBool("MoveRight", true);
                 }
@@ -87,8 +87,9 @@ public class PushableBox : MonoBehaviour
 
             else if (!horizontal)
             {
+                Debug.Log("Moving");
                 AudioManager.instance.PlaySound("move");
-                if (axis == 1f)
+                if (axis >0)
                 {
                     anim.SetBool("MoveUp", true);
                 }
@@ -115,19 +116,10 @@ public class PushableBox : MonoBehaviour
             up.GetComponent<SpriteRenderer>().sprite = indicators[botFace - 1];
             down.GetComponent<SpriteRenderer>().sprite = indicators[topFace - 1];
         }
-        else
-        {
-            if (isSliding)
+        else if (isSliding)
             {
                 Slide(horizontal, axis);
             }
-            anim.SetBool("MoveRight", false);
-            anim.SetBool("MoveLeft", false);
-            anim.SetBool("MoveUp", false);
-            anim.SetBool("MoveDown", false);
-            anim.SetBool("isMoving", false);
-            // isMoving = false;
-        }
 
     }
 
@@ -165,8 +157,10 @@ public class PushableBox : MonoBehaviour
     {
         Debug.Log("go");
         canMove = false;
+        isMoving = true;
         yield return new WaitForSeconds(delay);
         canMove = true;
+        isMoving = false;
     }
 
     void MoveVertically(int dir)

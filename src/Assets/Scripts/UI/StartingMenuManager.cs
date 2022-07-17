@@ -19,6 +19,7 @@ public class StartingMenuManager : MonoBehaviour
     public Button StartGameButton;
     public Button LevelButton;
     public Button OptionsButton;
+    public Button CreditsButton;
 
     void Awake()
     {
@@ -47,18 +48,21 @@ public class StartingMenuManager : MonoBehaviour
         levelLoader = LevelManager.GetComponent<LevelLoader>();
 
         StartGameButton.onClick.AddListener(StartGame);
-        LevelButton.onClick.AddListener(LevelSelect);
+
+        LevelButton.onClick.AddListener(() => {
+            SceneHelper.LoadScene("WorldSelect", false);
+        });
 
         OptionsButton.onClick.AddListener(() => {
             SceneHelper.LoadScene("OptionsMenu", false);
         });
 
+        CreditsButton.onClick.AddListener(() => {
+            SceneHelper.LoadScene("CreditsMenu", false);
+        });
+
 
         AudioManager.instance.PlayMusic("2loop");
-    }
-
-    void LevelSelect() {
-        SceneHelper.LoadScene("WorldSelect", false);
     }
 
     void StartGame()

@@ -187,9 +187,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonText: {fileID: 1443554723844314430}
   hoverPosDifference: {x: 0, y: 1.5, z: 0}
-  downPosDifference: {x: 0, y: 0, z: 0}
-  notHoverTextColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
-  hoverTextColor: {r: 1, g: 1, b: 1, a: 1}
+  downPosDifference: {x: 0, y: 1.5, z: 0}
+  notHoverTextColor: {r: 1, g: 1, b: 1, a: 1}
+  hoverTextColor: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 1}
 --- !u!114 &1443554723992640721
 MonoBehaviour:
   m_ObjectHideFlags: 0

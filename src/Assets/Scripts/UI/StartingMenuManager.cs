@@ -15,7 +15,9 @@ public class StartingMenuManager : MonoBehaviour
     public GameObject AudioManagerPrefab;
 
     public Transform LevelManager;
+
     public Button StartGameButton;
+    public Button LevelButton;
 
     void Awake()
     {
@@ -38,20 +40,39 @@ public class StartingMenuManager : MonoBehaviour
            Instantiate(AudioManagerPrefab);
         }
     }
-
     void Start()
     {
         LevelManager = Instantiate(LevelManager);
         levelLoader = LevelManager.GetComponent<LevelLoader>();
 
         StartGameButton.onClick.AddListener(StartGame);
+        LevelButton.onClick.AddListener(LevelSelect);
 
         AudioManager.instance.PlayMusic("2loop");
     }
 
+    void LevelSelect() {
+        SceneHelper.LoadScene("WorldSelect", false);
+    }
+
     void StartGame()
     {
-        levelLoader.LoadLevel("0-1");
+        int worldReached = PlayerPrefs.GetInt("WorldReached");
+        int levelReached = PlayerPrefs.GetInt("LevelReached");
+
+        if (worldReached == null) {
+            PlayerPrefs.SetInt("WorldReached", 0);
+            worldReached = 0;
+        }
+
+        if (levelReached == null || levelReached == 0) {
+            PlayerPrefs.SetInt("LevelReached", 1);
+            levelReached = 1;
+        }
+
+        string level = worldReached + "-" + levelReached;
+        
+        levelLoader.LoadLevel(level);
     }
 
 }

@@ -68,6 +68,7 @@ public class AudioManager : MonoBehaviour
 
     void Start() {
         effectsSource.volume = sfxVolume;
+        musicSource.loop = true;
     }
 
     public void PlaySound(string clip) {

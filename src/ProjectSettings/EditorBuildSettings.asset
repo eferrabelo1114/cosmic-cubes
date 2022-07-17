@@ -24,11 +24,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Menus/PauseMenu.unity
     guid: 3570f79def99b714291c2631a799fa05
   - enabled: 1
+    path: Assets/Scenes/Menus/LevelSelect.unity
+    guid: 8a09f55b32b8b9a42900c7c5ac9342c5
+  - enabled: 1
     path: Assets/Scenes/UI/LevelUI.unity
     guid: ba69590f7bf72e54cb09b3ff7f50761b
   - enabled: 1
     path: Assets/Scenes/Levels/0-2.unity
     guid: 61f4c37a96d96c9478e2491425e55c3a
+  - enabled: 1
+    path: Assets/Scenes/Menus/WorldSelect.unity
+    guid: 9b9b586139cc8d345b0900565b3c50d2
   - enabled: 1
     path: Assets/Scenes/Levels/0-3.unity
     guid: b2adf383d44d5ce4286670b162c2d3ee

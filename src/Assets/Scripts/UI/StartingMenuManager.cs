@@ -61,8 +61,13 @@ public class StartingMenuManager : MonoBehaviour
             SceneHelper.LoadScene("CreditsMenu", false);
         });
 
+        float lengthOfTrack = AudioManager.instance.GetTrackLength("TitleIntro");
+        AudioManager.instance.PlayMusic("TitleIntro", false, false);
 
-        AudioManager.instance.PlayMusic("2loop");
+        CallAfterDelay.Create(lengthOfTrack, () =>
+        {
+            AudioManager.instance.PlayMusic("TitleLoop", false, true);
+        });
     }
 
     void StartGame()

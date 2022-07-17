@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public Animator anim;
     bool canMove = true;
     float delay = .5f;
-
+    public bool isMoving = false;
     public int[] verticalDiceReel = { 1, 5, 6 };
     public int[] horizontalDiceReel = { 2, 3, 5, 6 };
 

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class LevelButton : MonoBehaviour
 {
     private GameManager gameManager;
-    
+
     public int level = 0;
 
     public Text buttonText;
@@ -20,12 +20,14 @@ public class LevelButton : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        
-        buttonText.text = gameManager.selectedWorld + "-" + level;
+        int selectedWorld = gameManager.selectedWorld;
 
+        buttonText.text = gameManager.selectedWorld + "-" + level;
+        
+        int worldReached = PlayerPrefs.GetInt("WorldReached");
         int levelReached = PlayerPrefs.GetInt("LevelReached");
 
-        if (levelReached < level) {
+        if (levelReached < level && worldReached <= selectedWorld) {
             button.enabled = false;
             buttonImage.enabled = false;
             buttonText.color = notReachedColor;

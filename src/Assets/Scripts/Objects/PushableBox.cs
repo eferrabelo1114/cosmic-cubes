@@ -66,7 +66,7 @@ public class PushableBox : MonoBehaviour
 
             if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
             {
-                sfx.GetComponent<SoundEffects>().playOnce(sfx.GetComponent<SoundEffects>().soundEffects[0]);
+                AudioManager.instance.PlaySound("move");
                 anim.SetBool("isMoving", true);
 
                 if (Input.GetAxisRaw("Horizontal") == 1f)
@@ -87,7 +87,7 @@ public class PushableBox : MonoBehaviour
 
             else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
             {
-                sfx.GetComponent<SoundEffects>().playOnce(sfx.GetComponent<SoundEffects>().soundEffects[0]);
+                AudioManager.instance.PlaySound("move");
                 if (Input.GetAxisRaw("Vertical") == 1f)
                 {
                     anim.SetBool("MoveUp", true);

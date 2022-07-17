@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    private float musicVolume = 0.3f;
-    private float sfxVolume = 1.0f;
+    public static double masterVolume = 0.5;
+    public static double musicVolume = 0.5;
+    public static double sfxVolume = 1.0;
 
     private bool isPlayingTrack = false;
     private string currentPlayingTrack = null;
@@ -22,7 +23,7 @@ public class AudioManager : MonoBehaviour
         if (isPlayingTrack) {
             // Fade track out
             while(timeElapsed < timeToFade) {
-                musicSource.volume = Mathf.Lerp(musicVolume, 0, timeElapsed / timeToFade);
+                musicSource.volume = Mathf.Lerp((float)musicVolume, 0, timeElapsed / timeToFade);
                 timeElapsed += Time.deltaTime;
                 yield return null;
             }
@@ -36,26 +37,25 @@ public class AudioManager : MonoBehaviour
             timeElapsed = 0;
             musicSource.Play();
             while(timeElapsed < timeToFade) {
-                musicSource.volume = Mathf.Lerp(0, musicVolume, timeElapsed / timeToFade);
+                musicSource.volume = Mathf.Lerp(0, (float)musicVolume, timeElapsed / timeToFade);
                 timeElapsed += Time.deltaTime;
                 yield return null;
             }
-            musicSource.volume = musicVolume;
+            musicSource.volume = (float)musicVolume;
         } else {
             musicSource.clip = newClip;
             musicSource.volume = 0f;
             musicSource.Play();
         
             while(timeElapsed < timeToFade) {
-                musicSource.volume = Mathf.Lerp(0, musicVolume, timeElapsed / timeToFade);
+                musicSource.volume = Mathf.Lerp(0, (float)musicVolume, timeElapsed / timeToFade);
                 timeElapsed += Time.deltaTime;
 
                 yield return null;
             }
-            musicSource.volume = musicVolume;
+            musicSource.volume = (float)musicVolume;
         }
     }
-
 
     void Awake() {
         if (instance == null) {
@@ -67,8 +67,30 @@ public class AudioManager : MonoBehaviour
     }
 
     void Start() {
-        effectsSource.volume = sfxVolume;
+        AudioListener.volume = (float)masterVolume;
+        effectsSource.volume = (float)sfxVolume;
         musicSource.loop = true;
+    }
+
+    public void ChangeMusicVolume() {
+
+        if ((musicVolume - 0.1) <= 0.0) {
+            musicVolume = 1.0;
+        } else {
+            musicVolume -= 0.1;
+        }
+
+        musicSource.volume = (float)musicVolume;
+    }
+
+    public void ChangeMasterVolume() {
+        if ((masterVolume - 0.1) <= 0.0) {
+            masterVolume = 1.0;
+        } else {
+            masterVolume -= 0.1;
+        }
+
+        AudioListener.volume = (float)masterVolume;
     }
 
     public void PlaySound(string clip) {

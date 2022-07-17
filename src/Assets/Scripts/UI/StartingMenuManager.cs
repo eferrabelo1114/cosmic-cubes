@@ -19,6 +19,7 @@ public class StartingMenuManager : MonoBehaviour
     public Button StartGameButton;
     public Button LevelButton;
     public Button OptionsButton;
+    public Button CreditsButton;
 
     void Awake()
     {
@@ -47,39 +48,30 @@ public class StartingMenuManager : MonoBehaviour
         levelLoader = LevelManager.GetComponent<LevelLoader>();
 
         StartGameButton.onClick.AddListener(StartGame);
-        LevelButton.onClick.AddListener(LevelSelect);
+
+        LevelButton.onClick.AddListener(() => {
+            SceneHelper.LoadScene("WorldSelect", false);
+        });
 
         OptionsButton.onClick.AddListener(() => {
             SceneHelper.LoadScene("OptionsMenu", false);
         });
 
-        int worldReached = PlayerPrefs.GetInt("WorldReached");
-        int levelReached = PlayerPrefs.GetInt("LevelReached");
-        
-        if (worldReached == null) {
-            PlayerPrefs.SetInt("WorldReached", 0);
-            worldReached = 0;
-        }
+        CreditsButton.onClick.AddListener(() => {
+            SceneHelper.LoadScene("CreditsMenu", false);
+        });
 
-        if (levelReached == null || levelReached == 0) {
-            PlayerPrefs.SetInt("LevelReached", 1);
-            levelReached = 1;
-        }
 
         AudioManager.instance.PlayMusic("2loop");
     }
 
-    void LevelSelect() {
-        SceneHelper.LoadScene("WorldSelect", false);
-    }
-
     void StartGame()
     {
-        int worldReached = PlayerPrefs.GetInt("WorldReached");
-        int levelReached = PlayerPrefs.GetInt("LevelReached");
-        
+        int worldReached = PlayerPrefs.GetInt("WorldReached", 0);
+        int levelReached = PlayerPrefs.GetInt("LevelReached", 1);
+
         string level = worldReached + "-" + levelReached;
-        
+
         levelLoader.LoadLevel(level);
     }
 

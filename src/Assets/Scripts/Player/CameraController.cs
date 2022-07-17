@@ -18,8 +18,6 @@ public class CameraController : MonoBehaviour
     private int maxY = 412;
     private int minY = 187;
 
-    private float delay = 0.25f;
-
     // Start is called before the first frame update
     void Start()
     {

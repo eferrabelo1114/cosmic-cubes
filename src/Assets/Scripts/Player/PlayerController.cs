@@ -44,10 +44,41 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Slide()
+    {
+
+        Vector3 dir;
+        canMove = false;
+        isMoving = true;
+        if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
+        {
+            dir = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
+            while (!Physics2D.OverlapCircle(movePoint.position + dir, .2f, collisionLayer))
+            {
+                movePoint.position += dir;
+            }
+        }
+
+        else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
+        {
+            dir = new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
+            while (!Physics2D.OverlapCircle(movePoint.position + dir, .2f, collisionLayer))
+            {
+                movePoint.position += dir;
+            }
+        }
+
+        canMove = true;
+        isMoving = false;
+        // StartCoroutine(MoveDelay());
+    }
+
     // Update is called once per frame
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
+
+        // Slide(new Vector3(1f, 0f, 0f));
 
         if (Vector3.Distance(transform.position, movePoint.position) <= .05f && canMove)
         {

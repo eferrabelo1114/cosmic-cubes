@@ -48,7 +48,6 @@ public class PushableBox : MonoBehaviour
         Vector3 dir = horizontal ? new Vector3(axis, 0f, 0f) : new Vector3(0f, axis, 0f);
         canMove = false;
         isMoving = true;
-        Debug.Log("SLIDE");
         while (!Physics2D.OverlapCircle(movePoint.position + dir, .2f, collisionLayer))
         {
             movePoint.position += dir;
@@ -57,6 +56,7 @@ public class PushableBox : MonoBehaviour
         canMove = true;
         isMoving = false;
     }
+    
     public void PushDie(bool horizontal, float axis, Vector3 dir)
     {
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);

@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour
     public GameObject left;
     public GameObject up;
     public GameObject down;
-    public GameObject sfx;
     public StartingFaceConfig faceConfig;
 
     // Start is called before the first frame update

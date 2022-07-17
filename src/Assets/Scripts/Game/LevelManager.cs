@@ -9,12 +9,14 @@ public class LevelManager : MonoBehaviour
     private GameObject LevelSpawnpoint;
     private CheckFace endFaceChecker;
     private LevelLoader levelLoader;
-    public StartingFaceConfig startingFace;
     private bool leveCompleted = false;
 
+    [Header("Level Settings")]
+    public StartingFaceConfig startingFace;
     public string level = "0-0";
     public string NextLevel = "1-2";
 
+    [Header("Dont change these")]
     public GameObject AudioManagerPrefab;
     public GameObject LevelLoader;
     public GameObject GameManagerPrefab;
@@ -87,6 +89,9 @@ public class LevelManager : MonoBehaviour
 
         // Finally spawn the player in
         SceneHelper.LoadScene("Player", true);
+
+        // Make end point invisible
+        EndOfLevelObject.GetComponent<SpriteRenderer>().enabled = false;
 
         CallAfterDelay.Create(0, () =>
         {

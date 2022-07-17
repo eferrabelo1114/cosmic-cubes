@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour
     [Header("Level Settings")]
     public StartingFaceConfig startingFace;
     public string level = "0-0";
+    
     public string NextLevel = "1-2";
 
     [Header("Dont change these")]
@@ -41,20 +42,19 @@ public class LevelManager : MonoBehaviour
         {
             Instantiate(AudioManagerPrefab);
         }
+
+        // For level testing in case you forget to remove camera
+        GameObject camera = GameObject.Find("Main Camera");
+        if (camera != null)
+        {
+           Destroy(camera);
+        }
     }
 
     void Start()
     {
         // Gets the level loader for the scene
         levelLoader = Instantiate(LevelLoader).GetComponent<LevelLoader>();
-
-        // This is here for testing levels without using start menu
-        // TODO: Move this to gamemanager instead of level manager
-        string currentLevel = gameManager.currentLevel;
-        if (currentLevel == null || currentLevel == "")
-        {
-            gameManager.currentLevel = level;
-        }
 
         // Obtains the spawn point for the level
         GameObject LevelSpawnpoint = GameObject.FindGameObjectWithTag("PlayerSpawn");
@@ -123,7 +123,6 @@ public class LevelManager : MonoBehaviour
         // Level is completed, load next level
         if (!leveCompleted)
         {
-            Debug.Log("Level Completed");
             levelLoader.LoadLevel(NextLevel);
             leveCompleted = true;
         }

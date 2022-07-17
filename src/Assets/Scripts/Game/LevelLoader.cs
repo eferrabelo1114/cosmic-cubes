@@ -15,15 +15,15 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadLevel(string level)
     {
-        StartCoroutine(ChangeLevel(level));
+        ChangeLevel(level);
     }
 
-    IEnumerator ChangeLevel(string level)
+    void ChangeLevel(string level)
     {
         Transition.SetTrigger("Start");
 
-        yield return new WaitForSeconds(1);
-
-        gameManager.ChangeLevel(level);
+        CallAfterDelay.Create(1, () => {
+            gameManager.ChangeLevel(level);
+        });
     }
 }

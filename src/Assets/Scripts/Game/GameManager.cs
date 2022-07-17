@@ -8,8 +8,12 @@ public class GameManager : MonoBehaviour
     private float currentTimeScale;
     private bool gamePaused = false;
 
-    public string currentLevel = null;
+    public string currentLevel = "0-1";
+
     public Vector3 currentPlayerSpawnpoint;
+
+    public int selectedWorld = 0;
+    public int selectedLevel = 0;
     
     // Start is called before the first frame update
     void Start()
@@ -31,8 +35,21 @@ public class GameManager : MonoBehaviour
 
     // Initialize Game
     public void ChangeLevel(string level) {
-        SceneHelper.LoadScene(level, false);
+        int worldToChangeTo = (int)char.GetNumericValue(level[0]);
+        int levelToChangeTo = (int)char.GetNumericValue(level[2]);
+
         currentLevel = level;
+        SceneHelper.LoadScene(level, false);
+
+        float worldReached = PlayerPrefs.GetInt("WorldReached");
+        float levelReached = PlayerPrefs.GetInt("LevelReached");
+
+        if (worldToChangeTo > worldReached) {
+            PlayerPrefs.SetInt("WorldReached", worldToChangeTo);
+            PlayerPrefs.SetInt("LevelReached", 1);
+        } else if(worldToChangeTo == worldReached && levelToChangeTo > levelReached) {
+            PlayerPrefs.SetInt("LevelReached", levelToChangeTo);
+        }
     }
 
     public void RestartLevel() {

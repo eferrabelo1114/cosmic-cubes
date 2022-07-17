@@ -7,6 +7,7 @@ public class ButtonTrigger : MonoBehaviour
     public CheckFace checkFace;
     public List<GameObject> objectList;
     public bool triggered = false;
+    public Sprite pressedButton;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,7 @@ public class ButtonTrigger : MonoBehaviour
         {
             TriggerObjects();
             triggered = true;
+            gameObject.GetComponent<SpriteRenderer>().sprite = pressedButton;
         }
     }
 

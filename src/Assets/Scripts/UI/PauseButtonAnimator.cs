@@ -19,7 +19,6 @@ public class PauseButtonAnimator : MonoBehaviour, IPointerEnterHandler, IPointer
 
     void Start() {
         startPos = buttonText.transform.localPosition;
-        buttonText.GetComponent<Text>().color = notHoverTextColor;
     }
 
     void ResetButton() {
@@ -32,9 +31,9 @@ public class PauseButtonAnimator : MonoBehaviour, IPointerEnterHandler, IPointer
         buttonText.GetComponent<Text>().color = hoverTextColor;
     }
 
-    public void OnPointerEnter(PointerEventData eventData){
-        Debug.Log(eventData.pointerEnter);
+    public void OnPointerEnter(PointerEventData eventData) {
         bool isHoveringSelf = eventData.pointerEnter == gameObject;
+
         if (!isHoveringSelf) { return; }
         if (hovering) { return; }
 

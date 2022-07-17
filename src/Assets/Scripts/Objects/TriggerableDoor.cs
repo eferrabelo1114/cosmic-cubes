@@ -7,6 +7,8 @@ public class TriggerableDoor : Triggerable
 
     public LayerMask collisionLayer;
     public LayerMask objectLayer;
+    public Sprite openedDoor;
+    public Sprite closedDoor;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,10 +24,12 @@ public class TriggerableDoor : Triggerable
     override public void trigger()
     {
         gameObject.layer = LayerMask.NameToLayer("Default");
+        gameObject.GetComponent<SpriteRenderer>().sprite = openedDoor;
     }
 
     override public void unTrigger()
     {
-        gameObject.layer = LayerMask.NameToLayer("Collision"); ;
+        gameObject.layer = LayerMask.NameToLayer("Collision");
+        gameObject.GetComponent<SpriteRenderer>().sprite = closedDoor;
     }
 }

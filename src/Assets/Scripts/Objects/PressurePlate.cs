@@ -6,6 +6,7 @@ public class PressurePlate : MonoBehaviour
 {
     public CheckFace checkFace;
     public List<GameObject> objectList;
+    bool wasTriggered = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,12 +19,14 @@ public class PressurePlate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (checkFace.goalMet)
+        if (checkFace.goalMet&&!wasTriggered)
         {
+            wasTriggered = true;
             TriggerObjects();
         }
-        else
+        else if(!checkFace.goalMet&&wasTriggered)
         {
+            wasTriggered = false;
             UnTriggerObjects();
         }
     }

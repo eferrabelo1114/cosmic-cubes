@@ -7,31 +7,23 @@ public class DevUnlock : MonoBehaviour
 {   
     private string unlockSequence = "rnsm";
     private string currentSequence = "";
-    private bool devSequenceCompleted = false;
-
     private float currentTime = 0f;
 
-    private void unlockAll() {
-        if (currentSequence == unlockSequence) {
-            Debug.Log("DevUnlock unlocked");
-            devSequenceCompleted = true;
-        }
-    }
+    private bool unlocked = false;
 
     // Update is called once per frame
     void Update()
     {
-        if (devSequenceCompleted) { return; }
+        if (unlocked) { return; }
 
         if (currentSequence == unlockSequence) {
             PlayerPrefs.SetInt("WorldReached", 2);
             PlayerPrefs.SetInt("LevelReached", 3);
-
-            devSequenceCompleted = true;
+            AudioManager.instance.PlaySound("Button2");
+            unlocked = true;
         }
 
         if (currentTime >= 5) {
-            unlockAll();
             currentSequence = "";
             currentTime = 0f;
         }

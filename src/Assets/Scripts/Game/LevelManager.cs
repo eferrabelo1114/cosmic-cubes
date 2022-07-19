@@ -130,9 +130,15 @@ public class LevelManager : MonoBehaviour
         // Level is completed, load next level
         if (!leveCompleted)
         {
-            levelLoader.LoadLevel(NextLevel);
-            leveCompleted = true;
-            AudioManager.instance.PlaySound("exit!");
+            if (level == "2-3") {
+                SceneHelper.LoadScene("StartingMenu", false);
+                leveCompleted = true;
+                AudioManager.instance.PlaySound("exit!");
+            } else {
+                levelLoader.LoadLevel(NextLevel);
+                leveCompleted = true;
+                AudioManager.instance.PlaySound("exit!");
+            }
         }
     }
 }

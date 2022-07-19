@@ -449,7 +449,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1059039305
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -1479,7 +1479,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: -92.5, y: -182.88}
-  m_SizeDelta: {x: 155.51, y: 30}
+  m_SizeDelta: {x: 416.4, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1856551089
 MonoBehaviour:
@@ -1511,10 +1511,12 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 1
+    m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1.7
-  m_Text: Move your die using <color=#2f5753>WASD</color>
+  m_Text: 'Move your die using <color=#2f5753>WASD</color>
+
+    or arrow keys'
 --- !u!222 &1856551090
 CanvasRenderer:
   m_ObjectHideFlags: 0

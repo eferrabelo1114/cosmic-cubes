@@ -14,36 +14,38 @@ public class PlayerController : MonoBehaviour
     float delay = .5f;
     public bool isMoving = false;
     public bool isSliding = false;
-    public int[] verticalDiceReel = { 1, 5, 6 };
-    public int[] horizontalDiceReel = { 2, 3, 5, 6 };
+    //public int[] verticalDiceReel = { 1, 5, 6 };
+    //public int[] horizontalDiceReel = { 2, 3, 5, 6 };
 
-    public int verticalFaceIndex = 1;
-    public int horizontalFaceIndex = 2;
-    public int horizontalBackIndex = 0;
-    public int currentFace;
-    public int topFace;
-    public int botFace;
-    public int rightFace;
-    public int leftFace;
-    public List<Sprite> indicators;
-    public GameObject right;
-    public GameObject left;
-    public GameObject up;
-    public GameObject down;
-    public StartingFaceConfig faceConfig;
+    //public int verticalFaceIndex = 1;
+    //public int horizontalFaceIndex = 2;
+    //public int horizontalBackIndex = 0;
+    //public int currentFace;
+    //public int topFace;
+    //public int botFace;
+    //public int rightFace;
+    //public int leftFace;
+    // public List<Sprite> indicators;
+    // public GameObject right;
+    // public GameObject left;
+    // public GameObject up;
+    // public GameObject down;
+    public PlayerIndexController faces;
+    //public StartingFaceConfig faceConfig;
 
     // Start is called before the first frame update
     void Start()
     {
+        faces = gameObject.GetComponent<PlayerIndexController>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         transform.position = gameManager.currentPlayerSpawnpoint;
 
         movePoint.parent = null;
 
-        if (faceConfig != null)
-        {
-            loadFaces(faceConfig.verticalDiceReel, faceConfig.horizontalDiceReel);
-        }
+        //if (faceConfig != null)
+        //{
+        //    loadFaces(faceConfig.verticalDiceReel, faceConfig.horizontalDiceReel);
+        //}
     }
 
     public void Slide()
@@ -105,7 +107,7 @@ public class PlayerController : MonoBehaviour
                 // detector.position = movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal");
                 if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), .2f, collisionLayer))
                 {
-                    MoveHorizontal((int)Mathf.Sign(Input.GetAxisRaw("Horizontal")));
+                    faces.MoveHorizontal((int)Mathf.Sign(Input.GetAxisRaw("Horizontal")));
                     movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
                 }
                 else
@@ -135,7 +137,7 @@ public class PlayerController : MonoBehaviour
 
                 if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f), .2f, collisionLayer))
                 {
-                    MoveVertically((int)Mathf.Sign(Input.GetAxisRaw("Vertical")));
+                    faces.MoveVertically((int)Mathf.Sign(Input.GetAxisRaw("Vertical")));
                     movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
                 }
                 else
@@ -151,16 +153,17 @@ public class PlayerController : MonoBehaviour
 
                 StartCoroutine(MoveDelay());
             }
-            currentFace = horizontalDiceReel[horizontalFaceIndex];
-            anim.SetInteger("CurrentFace", currentFace);
-            topFace = (verticalFaceIndex - 1 < 0 ? verticalDiceReel[verticalDiceReel.Length - 1] : verticalDiceReel[verticalFaceIndex - 1]);
-            botFace = (verticalFaceIndex + 1 > verticalDiceReel.Length - 1 ? verticalDiceReel[0] : verticalDiceReel[verticalFaceIndex + 1]);
-            leftFace = (horizontalFaceIndex - 1 < 0 ? horizontalDiceReel[horizontalDiceReel.Length - 1] : horizontalDiceReel[horizontalFaceIndex - 1]);
-            rightFace = (horizontalFaceIndex + 1 > horizontalDiceReel.Length - 1 ? horizontalDiceReel[0] : horizontalDiceReel[horizontalFaceIndex + 1]);
-            right.GetComponent<SpriteRenderer>().sprite = indicators[leftFace - 1];
-            left.GetComponent<SpriteRenderer>().sprite = indicators[rightFace - 1];
-            up.GetComponent<SpriteRenderer>().sprite = indicators[botFace - 1];
-            down.GetComponent<SpriteRenderer>().sprite = indicators[topFace - 1];
+            // currentFace = horizontalDiceReel[horizontalFaceIndex];
+            // anim.SetInteger("CurrentFace", currentFace);
+            // topFace = (verticalFaceIndex - 1 < 0 ? verticalDiceReel[verticalDiceReel.Length - 1] : verticalDiceReel[verticalFaceIndex - 1]);
+            // botFace = (verticalFaceIndex + 1 > verticalDiceReel.Length - 1 ? verticalDiceReel[0] : verticalDiceReel[verticalFaceIndex + 1]);
+            // leftFace = (horizontalFaceIndex - 1 < 0 ? horizontalDiceReel[horizontalDiceReel.Length - 1] : horizontalDiceReel[horizontalFaceIndex - 1]);
+            // rightFace = (horizontalFaceIndex + 1 > horizontalDiceReel.Length - 1 ? horizontalDiceReel[0] : horizontalDiceReel[horizontalFaceIndex + 1]);
+            // right.GetComponent<SpriteRenderer>().sprite = indicators[leftFace - 1];
+            // left.GetComponent<SpriteRenderer>().sprite = indicators[rightFace - 1];
+            // up.GetComponent<SpriteRenderer>().sprite = indicators[botFace - 1];
+            // down.GetComponent<SpriteRenderer>().sprite = indicators[topFace - 1];
+            faces.setFaces();
         }
         else
         {
@@ -191,65 +194,65 @@ public class PlayerController : MonoBehaviour
         isMoving = false;
     }
 
-    void MoveVertically(int dir)
-    {
-        if (dir < 0)
-        {
-            int temp = verticalDiceReel[verticalDiceReel.Length - 1];
+    // void MoveVertically(int dir)
+    // {
+    //     if (dir < 0)
+    //     {
+    //         int temp = verticalDiceReel[verticalDiceReel.Length - 1];
 
-            for (int i = verticalDiceReel.Length - 1; i > 0; i--)
-            {
-                verticalDiceReel[i] = verticalDiceReel[i - 1];
-            }
+    //         for (int i = verticalDiceReel.Length - 1; i > 0; i--)
+    //         {
+    //             verticalDiceReel[i] = verticalDiceReel[i - 1];
+    //         }
 
-            verticalDiceReel[0] = horizontalDiceReel[0];
-            horizontalDiceReel[0] = temp;
-        }
-        else
-        {
-            int temp = verticalDiceReel[0];
+    //         verticalDiceReel[0] = horizontalDiceReel[0];
+    //         horizontalDiceReel[0] = temp;
+    //     }
+    //     else
+    //     {
+    //         int temp = verticalDiceReel[0];
 
-            for (int i = 0; i < verticalDiceReel.Length - 1; i++)
-            {
-                verticalDiceReel[i] = verticalDiceReel[i + 1];
-            }
+    //         for (int i = 0; i < verticalDiceReel.Length - 1; i++)
+    //         {
+    //             verticalDiceReel[i] = verticalDiceReel[i + 1];
+    //         }
 
-            verticalDiceReel[verticalDiceReel.Length - 1] = horizontalDiceReel[0];
-            horizontalDiceReel[0] = temp;
-        }
+    //         verticalDiceReel[verticalDiceReel.Length - 1] = horizontalDiceReel[0];
+    //         horizontalDiceReel[0] = temp;
+    //     }
 
 
-        horizontalDiceReel[horizontalFaceIndex] = verticalDiceReel[verticalFaceIndex];
-    }
+    //     horizontalDiceReel[horizontalFaceIndex] = verticalDiceReel[verticalFaceIndex];
+    // }
 
-    void MoveHorizontal(int dir)
-    {
+    // void MoveHorizontal(int dir)
+    // {
 
-        if (dir > 0)
-        {
-            int temp = horizontalDiceReel[horizontalDiceReel.Length - 1];
+    //     if (dir > 0)
+    //     {
+    //         int temp = horizontalDiceReel[horizontalDiceReel.Length - 1];
 
-            for (int i = horizontalDiceReel.Length - 1; i > 0; i--)
-            {
-                horizontalDiceReel[i] = horizontalDiceReel[i - 1];
-            }
+    //         for (int i = horizontalDiceReel.Length - 1; i > 0; i--)
+    //         {
+    //             horizontalDiceReel[i] = horizontalDiceReel[i - 1];
+    //         }
 
-            horizontalDiceReel[0] = temp;
-        }
-        else
-        {
-            int temp = horizontalDiceReel[0];
+    //         horizontalDiceReel[0] = temp;
+    //     }
+    //     else
+    //     {
+    //         int temp = horizontalDiceReel[0];
 
-            for (int i = 0; i < horizontalDiceReel.Length - 1; i++)
-            {
-                horizontalDiceReel[i] = horizontalDiceReel[i + 1];
-            }
+    //         for (int i = 0; i < horizontalDiceReel.Length - 1; i++)
+    //         {
+    //             horizontalDiceReel[i] = horizontalDiceReel[i + 1];
+    //         }
 
-            horizontalDiceReel[horizontalDiceReel.Length - 1] = temp;
-        }
+    //         horizontalDiceReel[horizontalDiceReel.Length - 1] = temp;
+    //     }
 
-        verticalDiceReel[verticalFaceIndex] = horizontalDiceReel[horizontalFaceIndex];
-    }
+    //     verticalDiceReel[verticalFaceIndex] = horizontalDiceReel[horizontalFaceIndex];
+    // }
 
     // void MoveVertically(int dir)
     // {
@@ -310,16 +313,16 @@ public class PlayerController : MonoBehaviour
     //     verticalDiceReel[verticalFaceIndex] = horizontalDiceReel[horizontalFaceIndex];
     // }
 
-    public int getCurrentFace()
-    {
-        return this.currentFace;
-    }
+    // public int getCurrentFace()
+    // {
+    //     return this.currentFace;
+    // }
 
-    public void loadFaces(int[] vertical, int[] horizontal)
-    {
-        this.verticalDiceReel = (int[])vertical.Clone();
-        this.horizontalDiceReel = (int[])horizontal.Clone();
-        this.verticalFaceIndex = 1;
-        this.horizontalFaceIndex = 2;
-    }
+    // public void loadFaces(int[] vertical, int[] horizontal)
+    // {
+    //     this.verticalDiceReel = (int[])vertical.Clone();
+    //     this.horizontalDiceReel = (int[])horizontal.Clone();
+    //     this.verticalFaceIndex = 1;
+    //     this.horizontalFaceIndex = 2;
+    // }
 }

@@ -13,7 +13,7 @@ public class FaceSetter : Triggerable
 
         if (!isTriggered && checkFace.closestInteractable && checkFace.closestInteractable.GetComponent<PlayerController>())
         {
-            checkFace.closestInteractable.GetComponent<PlayerController>().loadFaces(face.verticalDiceReel, face.horizontalDiceReel);
+            checkFace.closestInteractable.GetComponent<PlayerIndexController>().loadFaces(face.verticalDiceReel, face.horizontalDiceReel);
             isTriggered = true;
         }
         else if (!isTriggered && checkFace.closestInteractable && checkFace.closestInteractable.GetComponent<PushableBox>())

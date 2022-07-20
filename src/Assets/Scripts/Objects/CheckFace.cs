@@ -34,7 +34,7 @@ public class CheckFace : MonoBehaviour
             {
                 if (!closestObj.GetComponent<PlayerController>().isMoving)
                 {
-                    goalMet = goalFace == closestObj.GetComponent<PlayerController>().getCurrentFace() || goalFace == 0;
+                    goalMet = goalFace == closestObj.GetComponent<PlayerIndexController>().getCurrentFace() || goalFace == 0;
                     closestInteractable = closestObj;
                 }
                 else

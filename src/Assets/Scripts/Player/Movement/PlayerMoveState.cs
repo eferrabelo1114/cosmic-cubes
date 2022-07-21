@@ -8,10 +8,11 @@ public class PlayerMoveState : PlayerBaseState
     public Vector2 moveDirection;
     public PlayerStatsController stats;
     public LayerMask collisionLayer;
+    string moveState;
     // Start is called before the first frame update
     public override void EnterState()
     {
-        
+        moveState = "notMoving";
     }
 
     // Update is called once per frame
@@ -87,9 +88,10 @@ public class PlayerMoveState : PlayerBaseState
     }
 
     public override void ExitState(){
+        moveState = "Move";
     }
 
     public override string GetState(){
-        return "Move";
+        return moveState;
     }
 }

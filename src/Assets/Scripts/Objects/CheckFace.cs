@@ -32,7 +32,7 @@ public class CheckFace : MonoBehaviour
             closestObj = FindClosestObj(interactableTag);
             if (closestObj && closestObj.GetComponent<PlayerStatsController>())
             {
-                if (closestObj.GetComponent<PlayerStateController>().CurrentState.GetState() != "Move")
+                if (closestObj.GetComponent<PlayerStateController>().CurrentState.GetState() != "Move" )
                 {
                     goalMet = goalFace == closestObj.GetComponent<PlayerIndexController>().getCurrentFace() || goalFace == 0;
                     closestInteractable = closestObj;

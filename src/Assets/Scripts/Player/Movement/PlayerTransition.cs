@@ -12,7 +12,12 @@ public class PlayerTransition : PlayerBaseState
 
 
     public override void EnterState(){
+        if(!stats.isSliding){
         canTransition = false;
+        }
+        else{
+        StartCoroutine(SlideTransition());
+        }
     }
 
     public override PlayerBaseState UpdateState(){
@@ -25,7 +30,6 @@ public class PlayerTransition : PlayerBaseState
                 return slideState;
             }
             else{
-                Debug.Log("transitioning to move");
                 return moveState;
             }
         }
@@ -38,16 +42,33 @@ public class PlayerTransition : PlayerBaseState
 
         private IEnumerator CanTransition()
     {
-        Debug.Log("Delaying");
         this.canTransition = false;
         this.hasRun = true;
-        yield return new WaitForSeconds(1);
-        Debug.Log("CanMove");
+        stats.anim.SetBool("MoveRight", false);
+        stats.anim.SetBool("MoveLeft", false);
+        stats.anim.SetBool("MoveUp", false);
+        stats.anim.SetBool("MoveDown", false);
+        stats.anim.SetBool("isMoving", false);
+        yield return new WaitForSeconds(stats.delay);
         this.canTransition = true;
         this.hasRun = false;
     }
 
-    public override void PrintState(){
-        Debug.Log("Transition");
+    private IEnumerator SlideTransition()
+    {
+        this.canTransition = false;
+        this.hasRun = true;
+        stats.anim.SetBool("MoveRight", false);
+        stats.anim.SetBool("MoveLeft", false);
+        stats.anim.SetBool("MoveUp", false);
+        stats.anim.SetBool("MoveDown", false);
+        stats.anim.SetBool("isMoving", false);
+        yield return new WaitForSeconds(.001f);
+        this.canTransition = true;
+        this.hasRun = false;
+    }
+
+    public override string GetState(){
+        return "Transition";
     }
 }

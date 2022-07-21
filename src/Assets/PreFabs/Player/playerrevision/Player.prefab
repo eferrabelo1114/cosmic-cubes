@@ -712,16 +712,16 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6721766896419745606}
-  - component: {fileID: 6721766896419745601}
+  - component: {fileID: 9216726772232621267}
   - component: {fileID: 865469027502804261}
+  - component: {fileID: 7109647586226731248}
+  - component: {fileID: 6304396489747543674}
+  - component: {fileID: 1307153962112730332}
+  - component: {fileID: 6148886787731170374}
   - component: {fileID: 6721766896419745605}
   - component: {fileID: 6721766896419745604}
   - component: {fileID: 2697838148383866523}
   - component: {fileID: 6576594029232159445}
-  - component: {fileID: 7109647586226731248}
-  - component: {fileID: 9216726772232621267}
-  - component: {fileID: 6304396489747543674}
-  - component: {fileID: 1307153962112730332}
   m_Layer: 3
   m_Name: Player
   m_TagString: Dice
@@ -753,7 +753,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6721766896419745601
+--- !u!114 &9216726772232621267
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -762,18 +762,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 6721766896419745600}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3be719d91e4a7c1408b659cf0edd0750, type: 3}
+  m_Script: {fileID: 11500000, guid: 071e56c755c67a34097d017520bda0c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  movePoint: {fileID: 6721766895958115462}
+  gameManager: {fileID: 0}
   collisionLayer:
     serializedVersion: 2
     m_Bits: 8
-  anim: {fileID: 6721766896419745604}
-  isMoving: 0
+  delay: 0.5
   isSliding: 0
   faces: {fileID: 865469027502804261}
+  movePoint: {fileID: 6721766895958115462}
+  anim: {fileID: 6721766896419745604}
 --- !u!114 &865469027502804261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -809,6 +810,69 @@ MonoBehaviour:
   down: {fileID: 6721766896136434823}
   faceConfig: {fileID: 0}
   anim: {fileID: 6721766896419745604}
+--- !u!114 &7109647586226731248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6721766896419745600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e0828a24117fce46910a444aa1035e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnterState: {fileID: 1307153962112730332}
+  faces: {fileID: 865469027502804261}
+  movePoint: {fileID: 6721766895958115462}
+  moveSpeed: 5
+--- !u!114 &6304396489747543674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6721766896419745600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7308d8a158e0959478822b1881a9aef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionState: {fileID: 1307153962112730332}
+  moveDirection: {x: 0, y: 0}
+  stats: {fileID: 9216726772232621267}
+  collisionLayer:
+    serializedVersion: 2
+    m_Bits: 8
+--- !u!114 &1307153962112730332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6721766896419745600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f9fd7f1f5ef36a41a3839289459d595, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slideState: {fileID: 6148886787731170374}
+  moveState: {fileID: 6304396489747543674}
+  stats: {fileID: 9216726772232621267}
+--- !u!114 &6148886787731170374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6721766896419745600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fedfb39d1cbf1340804480d28c0bf62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionState: {fileID: 1307153962112730332}
+  stats: {fileID: 9216726772232621267}
 --- !u!212 &6721766896419745605
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -928,77 +992,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7109647586226731248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6721766896419745600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e0828a24117fce46910a444aa1035e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnterState: {fileID: 1307153962112730332}
-  faces: {fileID: 865469027502804261}
-  movePoint: {fileID: 6721766895958115462}
-  moveSpeed: 5
---- !u!114 &9216726772232621267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6721766896419745600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 071e56c755c67a34097d017520bda0c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  gameManager: {fileID: 0}
-  collisionLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  delay: 1
-  isSliding: 0
-  faces: {fileID: 865469027502804261}
-  movePoint: {fileID: 6721766895958115462}
---- !u!114 &6304396489747543674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6721766896419745600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7308d8a158e0959478822b1881a9aef8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transitionState: {fileID: 1307153962112730332}
-  moveDirection: {x: 0, y: 0}
-  moveSpeed: 5
-  movePoint: {fileID: 6721766895958115462}
-  collisionLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  anim: {fileID: 6721766896419745604}
-  faces: {fileID: 865469027502804261}
-  stats: {fileID: 0}
---- !u!114 &1307153962112730332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6721766896419745600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f9fd7f1f5ef36a41a3839289459d595, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slideState: {fileID: 0}
-  moveState: {fileID: 6304396489747543674}
-  stats: {fileID: 9216726772232621267}

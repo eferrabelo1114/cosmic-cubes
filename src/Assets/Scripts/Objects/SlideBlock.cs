@@ -11,12 +11,10 @@ public class SlideBlock : Triggerable
     {
         if (isTriggered)
         {
-            if (checkFace.closestInteractable && checkFace.closestInteractable.GetComponent<PlayerController>())
+            if (checkFace.closestInteractable && checkFace.closestInteractable.GetComponent<PlayerStatsController>())
             {
-                checkFace.closestInteractable.GetComponent<PlayerController>().isSliding = true;
-                checkFace.closestInteractable.GetComponent<PlayerController>().Slide();
-
-
+                checkFace.closestInteractable.GetComponent<PlayerStatsController>().isSliding = true;
+                //checkFace.closestInteractable.GetComponent<PlayerController>().Slide();
             }
             else if (checkFace.closestInteractable && checkFace.closestInteractable.GetComponent<PushableBox>())
             {
@@ -30,12 +28,12 @@ public class SlideBlock : Triggerable
     override public void trigger()
     {
 
-        if (!isTriggered && checkFace.closestInteractable && checkFace.closestInteractable.GetComponent<PlayerController>())
+        if (!isTriggered && checkFace.closestInteractable && checkFace.closestInteractable.GetComponent<PlayerStatsController>())
         {
-            if (checkFace.closestInteractable.GetComponent<PlayerController>().isSliding == false)
+            if (checkFace.closestInteractable.GetComponent<PlayerStatsController>().isSliding == false)
             {
-                checkFace.closestInteractable.GetComponent<PlayerController>().isSliding = true;
-                checkFace.closestInteractable.GetComponent<PlayerController>().Slide();
+                checkFace.closestInteractable.GetComponent<PlayerStatsController>().isSliding = true;
+                //checkFace.closestInteractable.GetComponent<PlayerController>().Slide();
                 isTriggered = true;
             }
 
@@ -58,9 +56,9 @@ public class SlideBlock : Triggerable
         // if (slide)
         isTriggered = false;
 
-        if (checkFace.closestInteractable && checkFace.closestInteractable.GetComponent<PlayerController>())
+        if (checkFace.closestInteractable && checkFace.closestInteractable.GetComponent<PlayerStatsController>())
         {
-            // checkFace.closestInteractable.GetComponent<PlayerController>().isSliding = false;
+            checkFace.closestInteractable.GetComponent<PlayerController>().isSliding = false;
         }
 
         if (checkFace.closestInteractable && checkFace.closestInteractable.GetComponent<PushableBox>())

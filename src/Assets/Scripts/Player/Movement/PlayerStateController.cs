@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerStateController : MonoBehaviour
 {
     PlayerBaseState currentState;
+    public PlayerBaseState CurrentState {get{return currentState;}}
     public PlayerBaseState EnterState;
     PlayerBaseState newState;
     public PlayerIndexController faces;
@@ -16,11 +17,11 @@ public class PlayerStateController : MonoBehaviour
     }
 
     void Update(){
-        if(Vector3.Distance(transform.position, movePoint.position) >= .05f){
+        if(Vector3.Distance(transform.position, movePoint.position) >= .001f){
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
         }
             newState = currentState.UpdateState();
-            newState.PrintState();
+            Debug.Log(newState.GetState());
             if(newState != currentState){
                 newState.EnterState();
                 currentState.ExitState();

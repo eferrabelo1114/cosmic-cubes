@@ -970,6 +970,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1223820964 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1443554723844314401, guid: cbcd2b0be31ecc248b67f6c05de93900, type: 3}
+  m_PrefabInstance: {fileID: 1443554725082103505}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1514190286
 GameObject:
   m_ObjectHideFlags: 0
@@ -1452,5 +1463,9 @@ PrefabInstance:
       propertyPath: StartGameButton
       value: 
       objectReference: {fileID: 319618738}
+    - target: {fileID: 3581042075456851135, guid: 2eb26c05c5cc71243805f3c1583b272f, type: 3}
+      propertyPath: StartGameButtonText
+      value: 
+      objectReference: {fileID: 1223820964}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2eb26c05c5cc71243805f3c1583b272f, type: 3}

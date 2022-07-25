@@ -17,6 +17,8 @@ public class StartingMenuManager : MonoBehaviour
     public Transform LevelManager;
 
     public Button StartGameButton;
+    public Text StartGameButtonText;
+
     public Button LevelButton;
     public Button OptionsButton;
     public Button CreditsButton;
@@ -48,6 +50,15 @@ public class StartingMenuManager : MonoBehaviour
         levelLoader = LevelManager.GetComponent<LevelLoader>();
 
         StartGameButton.onClick.AddListener(StartGame);
+        
+        int worldReached = PlayerPrefs.GetInt("WorldReached", 0);
+        int levelReached = PlayerPrefs.GetInt("LevelReached", 1);
+
+        if (worldReached > 0) {
+            StartGameButtonText.text = "Continue Game";
+        } else if (worldReached == 0 && levelReached > 1) {
+            StartGameButtonText.text = "Continue Game";
+        }
 
         LevelButton.onClick.AddListener(() => {
             SceneHelper.LoadScene("WorldSelect", false);
@@ -61,8 +72,13 @@ public class StartingMenuManager : MonoBehaviour
             SceneHelper.LoadScene("CreditsMenu", false);
         });
 
+        float lengthOfTrack = AudioManager.instance.GetTrackLength("TitleIntro");
+        AudioManager.instance.PlayMusic("TitleIntro", false, 0f, false);
 
-        AudioManager.instance.PlayMusic("2loop");
+        CallAfterDelay.Create(lengthOfTrack, () =>
+        {
+            AudioManager.instance.PlayMusic("TitleLoop", false, 0.1f, true);
+        });
     }
 
     void StartGame()

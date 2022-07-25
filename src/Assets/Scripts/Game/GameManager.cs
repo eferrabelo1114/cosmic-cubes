@@ -53,26 +53,33 @@ public class GameManager : MonoBehaviour
     }
 
     public void RestartLevel() {
+        LevelManager levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
+        if (currentLevel != levelManager.level) {
+            currentLevel = levelManager.level;
+        }
+
         SceneHelper.LoadScene(currentLevel, false);
 
-        if (gamePaused) { UnpauseGame(); }
+        if (gamePaused) { UnpauseGame(); AudioManager.instance.PauseGame(false); }
     }
 
     public void PauseGame(bool pauseGame) {
         if (pauseGame && !gamePaused) {
             gamePaused = true;
             Time.timeScale = 0;
+            AudioManager.instance.PauseGame(true);
             SceneHelper.LoadScene("PauseMenu", true);
             return;
         }
-        
+
+        AudioManager.instance.PauseGame(false);
         gamePaused = false;
         Time.timeScale = currentTimeScale;
         SceneHelper.UnloadScene("PauseMenu");
     }
 
     public void ReturnToMenu() {
-        if (gamePaused) { UnpauseGame(); }
+        if (gamePaused) { UnpauseGame(); AudioManager.instance.PauseGame(false); }
         
         SceneHelper.LoadScene("StartingMenu", false);
     }

@@ -9,6 +9,8 @@ public class WorldSelect : MonoBehaviour
 
     public Button world0Button;
     public Button world1Button;
+    public Button world2Button;
+
     public Button backButton;
 
     // Start is called before the first frame update
@@ -27,6 +29,10 @@ public class WorldSelect : MonoBehaviour
 
         world1Button.onClick.AddListener(() => {
             ChangeWorld(1);
+        });
+
+        world2Button.onClick.AddListener(() => {
+            ChangeWorld(2);
         });
 
         backButton.onClick.AddListener(Back);

@@ -14,7 +14,6 @@ public class LevelManager : MonoBehaviour
     [Header("Level Settings")]
     public StartingFaceConfig startingFace;
     public string level = "0-0";
-    
     public string NextLevel = "1-2";
 
     [Header("Dont change these")]
@@ -48,6 +47,13 @@ public class LevelManager : MonoBehaviour
         if (camera != null)
         {
            Destroy(camera);
+        }
+
+        // For level testing in case you forget to remove event system
+        GameObject eventSystem = GameObject.Find("EventSystem");
+        if (eventSystem != null)
+        {
+           Destroy(eventSystem);
         }
     }
 
@@ -100,7 +106,8 @@ public class LevelManager : MonoBehaviour
             GameObject.Find("Player").GetComponent<PlayerController>().loadFaces(startingFace.verticalDiceReel, startingFace.horizontalDiceReel);
         });
 
-        AudioManager.instance.PlayMusic("1loop");
+        string AudioFile = "World" + level[0];
+        AudioManager.instance.PlayMusic(AudioFile, true, 0.25f, true);
     }
 
     void Update()
@@ -123,9 +130,15 @@ public class LevelManager : MonoBehaviour
         // Level is completed, load next level
         if (!leveCompleted)
         {
-            levelLoader.LoadLevel(NextLevel);
-            leveCompleted = true;
-            AudioManager.instance.PlaySound("exit!");
+            if (level == "2-3") {
+                SceneHelper.LoadScene("StartingMenu", false);
+                leveCompleted = true;
+                AudioManager.instance.PlaySound("exit!");
+            } else {
+                levelLoader.LoadLevel(NextLevel);
+                leveCompleted = true;
+                AudioManager.instance.PlaySound("exit!");
+            }
         }
     }
 }

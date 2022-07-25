@@ -16,8 +16,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
     public AudioAssets audioAssets;
 
-    private IEnumerator FadeTrack(AudioClip newClip) {
-        float timeToFade = 0.25f;
+    private IEnumerator FadeTrack(AudioClip newClip , float timeToFade) {
         float timeElapsed = 0;
 
         if (isPlayingTrack) {
@@ -57,6 +56,11 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    void PlayMusicClip(AudioClip newClip) {
+        musicSource.clip = newClip;
+        musicSource.Play();
+    }
+
     void Awake() {
         if (instance == null) {
             instance = this;
@@ -69,7 +73,6 @@ public class AudioManager : MonoBehaviour
     void Start() {
         AudioListener.volume = (float)masterVolume;
         effectsSource.volume = (float)sfxVolume;
-        musicSource.loop = true;
     }
 
     public void ChangeMusicVolume() {
@@ -98,14 +101,34 @@ public class AudioManager : MonoBehaviour
         effectsSource.PlayOneShot(audioClip);
     }
 
-    public void PlayMusic(string clip) {
+    public void PauseGame(bool pause) {
+        if (pause) {
+            musicSource.volume = 0.05f;
+        } else {
+            musicSource.volume = (float)musicVolume;
+        }
+    }
+
+    public void PlayMusic(string clip, bool fadeTracks, float fadeLength, bool loopTrack) {
         if (currentPlayingTrack == clip) { return; }
 
         AudioClip audioClip = audioAssets.getAudioClip(clip);
         StopAllCoroutines();
-        StartCoroutine(FadeTrack(audioClip));
+        
+        musicSource.loop = loopTrack;
+
+        if (fadeTracks) {
+            StartCoroutine(FadeTrack(audioClip, fadeLength));
+        } else {
+            PlayMusicClip(audioClip);
+        }
 
         currentPlayingTrack = clip;
         isPlayingTrack = true;
+    }
+
+    public float GetTrackLength(string clip) {
+        AudioClip audioClip = audioAssets.getAudioClip(clip);
+        return audioClip.length;
     }
 }
